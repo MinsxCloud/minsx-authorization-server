@@ -20,3 +20,19 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+*.prefs
+*.project
+*.classpath
+minsx-authorization-config/target/
+minsx-authorization-controller/target/
+minsx-authorization-entity/target/
+minsx-authorization-repository/target/
+minsx-authorization-service/minsx-authorization-service-api/target/
+minsx-authorization-service/minsx-authorization-service-implement/target/
+minsx-authorization-starter/target/
+minsx-authorization-config/.settings/org.eclipse.wst.common.project.facet.core.xml
+minsx-authorization-entity/.settings/org.eclipse.wst.common.project.facet.core.xml
+minsx-authorization-repository/.settings/org.eclipse.wst.common.project.facet.core.xml
+minsx-authorization-service/.settings/org.eclipse.wst.common.project.facet.core.xml
+minsx-authorization-service/minsx-authorization-service-implement/.settings/org.eclipse.wst.common.project.facet.core.xml
+minsx-authorization-starter/.settings/org.eclipse.wst.common.project.facet.core.xml
