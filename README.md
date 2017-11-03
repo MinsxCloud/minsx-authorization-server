@@ -10,7 +10,7 @@ Minsx-authorization-server是Minsx-Framework家庭成员的一部分，主要负
 + Spring Security
 + spring Data JPA
 + spring Security Oauth2.0
-+ spring thymeleaf
++ spring Thymeleaf
 + spring Aop
 ...
 
