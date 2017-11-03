@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,10 +28,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	private final Log logger = LogFactory.getLog(this.getClass());
 
 	@Override
 	public User loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByUserName(username);
+		if (user == null) {
+            logger.info(String.format("this user [%s] does not exist", username));
+            throw new UsernameNotFoundException("this user does not exist");
+        }
 		Set<GrantedAuthority> authorities = new HashSet<>();
 		List<Group> userGroups = user.getGroups();
 		userGroups.forEach(userGroup -> {

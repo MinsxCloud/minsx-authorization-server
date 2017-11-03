@@ -1,5 +1,6 @@
 package com.minsx.authorization.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,21 +11,32 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Order(-20)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
+	@Autowired
+	private LoginSuccessHandler loginSuccessHandler;
+
+	@Autowired
+	private LoginFailHandler loginFailHandler;
+	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+		http
 		.csrf().disable()
-        .authorizeRequests()
-                .antMatchers("/login","/oauth/authorize", "/oauth/confirm_access").permitAll()
-                .anyRequest().authenticated()
-                .and()
         .formLogin()
-               .loginPage("/login")
-               .permitAll()
-               .and()
+        	.loginPage("/login")
+        	.successHandler(loginSuccessHandler)
+        	.failureHandler(loginFailHandler)
+        	.permitAll()
+        	.and()
         .logout()
-               .logoutUrl("/logout")
-               .logoutSuccessUrl("/login");
+            .logoutUrl("/logout")
+            .permitAll()
+            .logoutSuccessUrl("/login")
+            .and()
+        .requestMatchers()
+        	.antMatchers("/login**","/oauth/authorize", "/oauth/confirm_access")
+        	.and()
+        .authorizeRequests()
+        	.anyRequest().authenticated();
     }
 	
 	@Override
