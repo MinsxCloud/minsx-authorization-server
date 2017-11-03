@@ -125,7 +125,6 @@
 
 
   <modules>
-    <module>minsx-authorization-core</module>
     <module>minsx-authorization-starter</module>
     <module>minsx-authorization-entity</module>
     <module>minsx-authorization-repository</module>
