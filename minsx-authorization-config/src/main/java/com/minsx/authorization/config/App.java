@@ -2,7 +2,6 @@ package com.minsx.authorization.config;
 
 /**
  * Hello world!
- *
  */
 public class App 
 {

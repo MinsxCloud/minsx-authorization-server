@@ -36,3 +36,5 @@ minsx-authorization-repository/.settings/org.eclipse.wst.common.project.facet.co
 minsx-authorization-service/.settings/org.eclipse.wst.common.project.facet.core.xml
 minsx-authorization-service/minsx-authorization-service-implement/.settings/org.eclipse.wst.common.project.facet.core.xml
 minsx-authorization-starter/.settings/org.eclipse.wst.common.project.facet.core.xml
+*.iml
+.idea/
