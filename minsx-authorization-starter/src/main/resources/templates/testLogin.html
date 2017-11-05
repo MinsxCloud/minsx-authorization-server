@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo</title>
+  </head>
+  <body>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+		var url = 'http://localhost:8080/loginServer/oauth/token';   
+
+		$.ajax({  
+			url : url,
+			dataType: 'JSON',
+			async: false,
+			crossDomain: true,
+			data: {
+				grant_type: 'password',
+				username: 'goodsave', 
+				password: 'goodsave'
+			},
+			method : 'POST',  
+			beforeSend : function(request) {  
+				request.setRequestHeader('Authorization', 'Basic Z29vZHNhdmU6Z29vZHNhdmU=');  
+			},
+			success: function(data) {  
+				console.log(data);  
+			} 
+		}); 
+		
+
+	</script>
+  </body>
+</html>
+

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * CrossFilter
  * Created by Joker on 2017/8/29.
  */
-@Component
+//@Component
 public class CrossFilter implements Filter {
 	
 	
