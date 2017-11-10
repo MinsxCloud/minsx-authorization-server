@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/minsx.js"></script>
+
+<!-- <form action="/loginServer/oauth/token" method="post">
+response_type:<br>
+<input type="text" name="grant_type" value="authorization_code">
+<br><br>
+scope:<br>
+<input type="text" name="code" value="">
+<br><br>
+redirect_uri:<br>
+<input type="text" name="redirect_uri" value="http://localhost:8080/loginServer/code">
+<br><br>
+<input type="submit" value="Submit">
+</form>  -->
+
+<input type="button" value="Submit"  onclick="doSubmit()">
+
+<script type="text/javascript">
+
+		function doSubmit(){
+			$.post("/loginServer/oauth/token", {
+			            grant_type: 'authorization_code',
+			            code: Minsx.Util.getUrlParam('code'),
+			            redirect_uri:'http://localhost:8080/loginServer/code'
+			}, successCallBack);
+		}
+		
+		//成功回调
+		function successCallBack(data, status) {
+			//alert(JSON.stringify(data));
+			//alert(data.access_token);
+			alert(Minsx.Json.parseToString(data));
+			
+			alert(Minsx.String.format("name:{0} pass:{1} ","goodsave","xxxx"));
+			
+		}
+		
+		
+		
+		
+</script>
+
+</body>
+</html>

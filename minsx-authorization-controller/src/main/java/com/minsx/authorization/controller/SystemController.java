@@ -8,9 +8,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SystemController {
 
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test() {
+		return "test";
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "login";
+	}
+	
+	@RequestMapping(value = "/code", method = RequestMethod.GET)
+	public String code() {
+		return "code";
 	}
 	
 	@ResponseBody

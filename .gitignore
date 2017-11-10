@@ -38,3 +38,4 @@ minsx-authorization-service/minsx-authorization-service-implement/.settings/org.
 minsx-authorization-starter/.settings/org.eclipse.wst.common.project.facet.core.xml
 *.iml
 .idea/
+minsx-authorization-starter/.springBeans

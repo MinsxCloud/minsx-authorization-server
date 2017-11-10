@@ -10,8 +10,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.stereotype.Component;
-
 /**
  * CrossFilter
  * Created by Joker on 2017/8/29.

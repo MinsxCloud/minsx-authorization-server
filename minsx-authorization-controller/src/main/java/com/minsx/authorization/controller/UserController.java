@@ -25,7 +25,7 @@ public class UserController {
     }
     
     @ResponseBody
-    @RequestMapping(value = "/userInfo",method = RequestMethod.POST)
+    @RequestMapping(value = "/userInfo",method = RequestMethod.GET)
     public String userInfo(){
     	Object object =SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	System.out.println(JSON.toJSONString(object));
