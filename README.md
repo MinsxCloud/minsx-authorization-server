@@ -12,7 +12,10 @@ Minsx-authorization-server是Minsx-Framework家庭成员的一部分，主要负
 + spring Security Oauth2.0
 + spring Thymeleaf
 + spring Aop
-...
 
+### 适用场景
++ 使用与单点登录系统
++ 需要分离用户系统的架构
++ 配合Minsx-Framework使用 [点此查看](https://github.com/goodsave/minsx-framework)
 
 
