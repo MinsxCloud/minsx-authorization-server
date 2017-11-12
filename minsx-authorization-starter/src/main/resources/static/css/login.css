@@ -1,0 +1,299 @@
+/* Powered by minsx.com*/
+body,html {
+    padding: 0;
+    margin: 0;
+    background-color: #F6F6F6;
+}
+
+.top{
+   /* border-bottom:5px solid #52B7B5 ;*/
+    width: 980px;
+    height: 40px;
+    text-align: center;
+    margin:0 auto;
+    /*background: url(../images/whiteLogo.png) no-repeat left center;
+    background-size:30%;*/
+    /*background-color: white;*/
+}
+
+.main{
+    /*background-color: #63B12A;*/
+    /*border:1px solid black;*/
+    width: 100%;
+    height:600px;
+    top:50px;
+    right:200px;
+}
+
+.main .content {
+    width: 1280px;
+    height: 600px;
+    background: url(../images/loginBckA.png) no-repeat,url(../images/loginBckC.png) no-repeat;
+    background-size:contain;
+    margin: 0 auto;
+    position: relative;
+}
+
+.main .content .notice {
+    /*border:1px solid black;*/
+    position: absolute;
+    width: 400px;
+    height:500px;
+    top: 50px;
+    left: 200px;
+}
+
+/***login begin***/
+.main .content .login{
+    background-color: white;
+    filter:alpha(Opacity=60);-moz-opacity:0.6;opacity: 0.6;
+    padding: 10px;
+    /*border:1px solid black;*/
+    position: absolute;
+    width: 350px;
+    height:480px;
+    top: 50px;
+    right: 200px;
+}
+
+
+.main .content .login .login-header{
+    background: url(../images/blackLogo.png) no-repeat left center;
+    background-size:80%;
+    background-position-x: 35px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:120px;
+}
+.main .content .login .login-username{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:60px;
+}
+.main .content .login .login-password{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:60px;
+}
+.main .content .login .login-remember-me{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 35px;
+    height:60px;
+}
+.main .content .login .login-button{
+    padding-left: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:60px;
+}
+
+.main .content .login .login-footer{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:60px;
+}
+/***login end***/
+
+
+
+/***register begin***/
+.main .content .register{
+    background-color: white;
+     filter:alpha(Opacity=60);-moz-opacity:0.6;opacity: 0.6;
+    padding: 10px;
+    /*border:1px solid black;*/
+    position: absolute;
+    width: 350px;
+    height:480px;
+    top: 50px;
+    right: 200px;
+}
+
+.main .content .register .register-header{
+    background: url(../images/blackLogo.png) no-repeat left center;
+    background-size:80%;
+    background-position-x: 35px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:120px;
+}
+.main .content .register .register-username{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:60px;
+}
+.main .content .register .register-password{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:60px;
+}
+.main .content .register .register-rePassword{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:60px;
+}
+.main .content .register .register-button{
+    padding-left: 25px;
+    padding-top: 25px;
+    padding-bottom: 5px;
+    height:40px;
+}
+.main .content .register .register-footer{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:60px;
+}
+/***register end***/
+
+
+
+/***getPass begin***/
+.main .content .getPass{
+    background-color: white;
+     filter:alpha(Opacity=60);-moz-opacity:0.6;opacity: 0.6;
+    padding: 10px;
+    /*border:1px solid black;*/
+    position: absolute;
+    width: 350px;
+    height:480px;
+    top: 50px;
+    right: 200px;
+}
+
+.main .content .getPass .getPass-header{
+    background: url(../images/blackLogo.png) no-repeat left center;
+    background-size:80%;
+    background-position-x: 35px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:120px;
+}
+.main .content .getPass .getPass-username{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:60px;
+}
+
+.main .content .getPass .getPass-sendCode{
+    margin-bottom: -15px;
+    color: #009f95;
+    font-size: 13px;
+    font-weight: 600;
+    float: right;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    right: 0;
+    height:30px;
+    line-height: 30px;
+    width: 70px;
+}
+
+.main .content .getPass .getPass-password{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:60px;
+}
+.main .content .getPass .getPass-code{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:60px;
+}
+.main .content .getPass .getPass-button{
+    padding-left: 25px;
+    padding-top: 25px;
+    padding-bottom: 5px;
+    height:40px;
+}
+.main .content .getPass .getPass-footer{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height:60px;
+}
+/***getPass end***/
+
+
+
+/****login and register common part begin***/
+.main .main-footer-left{
+    line-height: 70px;
+    position: absolute;
+    width: 100px;
+    left: 50px;
+    text-align: left;
+    font-size: 14px;
+    color:#009f95;
+    font-weight: 600;
+}
+
+.main .main-footer-right{
+    line-height: 70px;
+    position: absolute;
+    right: 50px;
+    width: 100px;
+    text-align: right;
+    font-size: 14px;
+    color:#009f95;
+    font-weight: 600;
+}
+
+.main .input-ico{
+    position: relative;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+}
+
+.main .main-input-outside{
+    position: relative;
+    left:70px;
+    top:-50px;
+    width: 250px;
+    height: 50px;
+}
+
+.main .main-input-inner{
+    width: 250px;
+    height: 40px;
+    border-width: 0;
+    border-bottom: 1px solid #b2b2b2;
+
+}
+/****login and register common part begin***/
+
+
+input{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.lawn{
+    background: url(../images/footer.png) no-repeat left center;
+    background-size:100%;
+    width: 980px;
+    height: 50px;
+    top:640px;
+    text-align: center;
+    margin:0 auto;
+}
+
+.footer{
+    width: 980px;
+    height: 50px;
+    top:690px;
+    text-align: center;
+    margin:0 auto;
+    color: #b2b2b2;
+    padding-top:10px;
+}
+
+.footer .description{
+    line-height: 20px;
+    font-size:13px;
+}
+
+.footer .copyright{
+    line-height: 20px;
+    font-size:13px;
+}

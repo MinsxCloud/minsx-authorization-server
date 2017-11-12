@@ -1,20 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>登录</title>
-    <link rel="stylesheet" href="frame/layui/css/layui.css">
-    <script src="frame/layui/layui.js"></script>
-    
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>米斯登录</title>
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <link rel="stylesheet" type="text/css" href="frame/layui/css/layui.css" />
+        <script src="js/jquery.min.js"></script>
+        <script src="frame/layui/layui.js"></script>
+
+    </head>
+    <body>
+        <div class="top">
+        </div >
+        <div class="main">
+            <div class="content">
+                <!--notice-->
+                <div class="notice">
+                </div>
+
+                <!--register-->
+                <div class="register" id="registerBox">
+                    <div class="register-header">
+                    </div>
+                    <div class="register-username">
+                        <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                        <div class="main-input-outside">
+                            <input type="text" name="title" placeholder="请输入用户名/邮箱/手机号码" class="main-input-inner">
+                        </div>
+                    </div>
+                    <div class="register-password">
+                        <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                        <div class="main-input-outside">
+                            <input type="text" name="title" type="password" placeholder="请输入密码" class="main-input-inner">
+                        </div>
+                    </div>
+                    <div class="register-rePassword">
+                        <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                        <div class="main-input-outside">
+                            <input type="text" name="title" type="password" placeholder="请再次输入密码" class="main-input-inner">
+                        </div>
+                    </div>
+                    <div class="register-button">
+                        <button class="layui-btn" style="width: 300px">注册</button>
+                    </div>
+                    <div class="register-footer">
+                        <a href="javascript:void(0);" onclick="showGetPass()"><div class="main-footer-left">忘记密码?</div></a>
+                        <a href="javascript:void(0);" onclick="showLogin()"><div class="main-footer-right">立即登录</div></a>
+                    </div>
+                </div>
 
 
+                <!--getPass-->
+                <div class="getPass" id="getPassBox">
+                    <div class="getPass-header">
+                    </div>
+                    <div class="getPass-username">
+                        <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                        <div class="main-input-outside">
+                            <input type="text" name="title" placeholder="请输入邮箱" class="main-input-inner">
+                            <a href="javascript:void(0);" onclick="sendCode()"><div class="getPass-sendCode">发送验证码</div></a>
+                        </div>
+                    </div>
+                    <div class="getPass-password">
+                        <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                        <div class="main-input-outside">
+                            <input type="text" name="title" type="password" placeholder="请输入新密码" class="main-input-inner">
+                        </div>
+                    </div>
+                    <div class="getPass-code">
+                        <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                        <div class="main-input-outside">
+                            <input type="text" name="title" id="code" placeholder="请输入验证码" class="main-input-inner">
+                        </div>
+                    </div>
+                    <div class="getPass-button">
+                        <button class="layui-btn" style="width: 300px">找回密码</button>
+                    </div>
+                    <div class="getPass-footer">
+                        <a href="javascript:void(0);" onclick="showLogin()"><div class="main-footer-left">立即登录</div></a>
+                        <a href="javascript:void(0);" onclick="showRegister()"><div class="main-footer-right">立即注册</div></a>
+                    </div>
+                </div>
+
+                <!--login-->
+                <div class="login" id="loginBox">
+                    <div class="login-header">
+                    </div>
+                    <div class="login-username">
+                        <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                        <div class="main-input-outside">
+                            <input type="text" name="title" placeholder="请输入用户名/邮箱/手机号码" class="main-input-inner">
+                        </div>
+                    </div>
+                    <div class="login-password">
+                        <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                        <div class="main-input-outside">
+                            <input type="text" name="title" type="password" placeholder="请输入密码" class="main-input-inner">
+                        </div>
+                    </div>
+                    <div class="login-remember-me">
+                        <div class="login-remember-me">
+                            <div class="layui-form">
+                                <input type="checkbox" name="like1[write]" lay-skin="primary" title="记住密码" checked="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login-button">
+                        <button class="layui-btn" style="width: 300px">登录</button>
+                    </div>
+                    <div class="login-footer">
+                        <a href="javascript:void(0);" onclick="showGetPass()"><div class="main-footer-left">忘记密码?</div></a>
+                        <a href="javascript:void(0);" onclick="showRegister()"><div class="main-footer-right">立即注册</div></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="lawn"></div>
+        <div class="footer">
+            <div class="description">米斯版权所有</div>
+            <div class="copyright">Copyright © 2016-2017 minsx.com All Rights Reserved</div>
+        </div>
 
 
+        <script>
+            $("#registerBox").hide();
+            $("#getPassBox").hide();
+
+            //Demo
+            layui.use('form', function(){
+                var form = layui.form;
+
+                //监听提交
+                form.on('submit(formDemo)', function(data){
+                    layer.msg(JSON.stringify(data.field));
+                    return false;
+                });
+            });
 
 
+            function sendCode() {
+                layer.tips('验证码已发送到您的邮箱', '#code');
+            }
 
 
-</body>
+            function showRegister() {
+                $("#loginBox").hide();
+                $("#getPassBox").hide();
+                $("#registerBox").show();
+
+            }
+
+            function showLogin() {
+                $("#registerBox").hide();
+                $("#getPassBox").hide();
+                $("#loginBox").show();
+            }
+
+            function showGetPass() {
+                $("#registerBox").hide();
+                $("#loginBox").hide();
+                $("#getPassBox").show();
+            }
+        </script>
+    </body>
 </html>
