@@ -164,11 +164,11 @@
             },
             success: function (data) {
                 var redir = Minsx.Util.getUrlParam("redir");
-                console.log(redir);
+                Minsx.Cookie.set("access_token",data.access_token,"/");
                 if (redir === null || redir === '') {
-                    window.location.href = 'http://localhost:88'+'?access_token='+data.access_token;
+                    window.location.href = 'http://localhost';
                 } else {
-                    window.location.href = redir + '?access_token=' + data.access_token;
+                    window.location.href = redir;
                 }
             },
             error: function (data) {
