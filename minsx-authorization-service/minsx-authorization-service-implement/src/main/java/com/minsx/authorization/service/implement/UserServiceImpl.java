@@ -13,8 +13,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 
-	public User findUserByUserId(Integer userId) {
-		return userRepository.findByUserId(userId);
+	public User findUserById(Integer id) {
+		return userRepository.findById(id);
 	}
 
 	public User findUserByUserName(String userName) {

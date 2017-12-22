@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.minsx.authorization.entity.Auth;
+import com.minsx.authorization.entity.auth.Auth;
 import com.minsx.authorization.entity.Group;
 import com.minsx.authorization.entity.Role;
 import com.minsx.authorization.entity.User;
@@ -35,8 +35,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public User loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByUserName(username);
 		if (user == null) {
-            logger.info(String.format("this user [%s] does not exist", username));
-            throw new UsernameNotFoundException("this user does not exist");
+            logger.info(String.format("the user [%s] does not exist", username));
+            throw new UsernameNotFoundException("the user does not exist");
         }
 		Set<GrantedAuthority> authorities = new HashSet<>();
 		List<Group> userGroups = user.getGroups();
@@ -45,7 +45,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			roles.forEach(role -> {
 				List<Auth> auths = role.getAuths();
 				auths.forEach(auth -> {
-					authorities.add(new SimpleGrantedAuthority(auth.getAuthType()+":"+auth.getAuthValue()));
+					authorities.add(new SimpleGrantedAuthority(auth.getType()+":"+auth.getValue()));
 				});
 			});
 		});

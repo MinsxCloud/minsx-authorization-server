@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>米斯登录</title>
+    <title>米斯云平台登录</title>
     <link rel="stylesheet" type="text/css" href="css/login.css">
     <link rel="stylesheet" type="text/css" href="frame/layui/css/layui.css"/>
     <script src="js/jquery.min.js"></script>
@@ -133,9 +133,9 @@
 
     </div>
 </div>
-<div class="lawn"></div>
-<div class="footer">
-    <div class="description">米斯版权所有</div>
+<div class="lawn">
+    <div class="footer-backPic"></div>
+    <div class="description">米斯云平台提供计算服务</div>
     <div class="copyright">Copyright © 2016-2017 minsx.com All Rights Reserved</div>
 </div>
 
@@ -149,7 +149,7 @@
 
     function login() {
         $.ajax({
-            url: '/loginServer/oauth/token',
+            url: '/oauth/token',
             dataType: 'JSON',
             async: false,
             crossDomain: true,
@@ -164,9 +164,9 @@
             },
             success: function (data) {
                 var redir = Minsx.Util.getUrlParam("redir");
-                Minsx.Cookie.set("access_token",data.access_token,"/");
+                Minsx.Cookie.set("access_token", data.access_token, "/");
                 if (redir === null || redir === '') {
-                    window.location.href = 'http://localhost';
+                    window.location.href = 'https://www.minsx.com';
                 } else {
                     window.location.href = redir;
                 }

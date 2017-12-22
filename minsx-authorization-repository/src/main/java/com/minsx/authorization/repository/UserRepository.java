@@ -12,7 +12,7 @@ import com.minsx.authorization.entity.User;
 @Component
 public interface UserRepository extends JpaRepository<User,Integer>{
 	
-	User findByUserId(Integer userId);
+	User findById(Integer id);
 	
 	User findByUserName(String userName);
 	

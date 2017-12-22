@@ -4,14 +4,14 @@ package com.minsx.authorization.entity.type;
  * 权限类型
  * Created by Joker on 2017/8/31.
  */
-public enum AuthType {
+public enum MenuType {
 
-    URL("URL"),MENU("MENU"),DATA("DATA"),BUTTON("BUTTON"),METHOD("METHOD"),UNKNOWN("UNKNOWN");
+    LINK("LINK"), IFRAME("IFRAME"), COMMAND("COMMAND"), NONE("NONE"), UNKNOWN("UNKNOWN");
 
     String value;
 
-    AuthType(String value){
-        this.value=value;
+    MenuType(String value) {
+        this.value = value;
     }
 
     public String getValue() {
@@ -21,13 +21,13 @@ public enum AuthType {
     public void setValue(String value) {
         this.value = value;
     }
-    
-    public static AuthType getAuthType(String value) {
+
+    public static MenuType getMenuType(String value) {
         try {
             return valueOf(value);
-        }catch (Exception e) {  
-            return UNKNOWN;  
-        }  
-    }  
+        } catch (Exception e) {
+            return UNKNOWN;
+        }
+    }
 
 }

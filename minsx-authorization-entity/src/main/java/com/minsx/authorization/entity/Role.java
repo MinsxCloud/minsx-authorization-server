@@ -1,24 +1,13 @@
 package com.minsx.authorization.entity;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-
 import com.alibaba.fastjson.JSON;
+import com.minsx.authorization.entity.auth.Auth;
 import com.minsx.authorization.entity.base.SimpleMinsxEntity;
 import com.minsx.authorization.entity.type.RoleState;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * 角色
@@ -35,7 +24,7 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
     @Column(nullable = false, name = "role_id")
     private Integer id;
 
-    @Column(nullable = false, unique = true, name = "name")
+    @Column(nullable = false, name = "name")
     private String name;
 
     @Column(nullable = false, name = "alias")
@@ -50,23 +39,17 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
     @Column(nullable = false, name = "state")
     private Integer state;
     
-    @Column(nullable = false, name = "discription")
+    @Column(name = "discription")
     private String discription;
 
-    @Column(nullable = false, name = "create_user_id")
+    //创建者ID
+	@Column(nullable = false, name = "create_user_id")
     private Integer createUserId;
-
-    @Column(nullable = false, name = "create_time")
-    private LocalDateTime createTime;
-
-    @Column(nullable = false, name = "edit_time")
-    private LocalDateTime editTime;
 
     @Override
     public String toString() {
         return JSON.toJSONString(this);
     }
-
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -123,33 +106,21 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
 		this.state = roleState.getValue();
 	}
 
-	public Integer getCreateUserId() {
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+    public void removeAuth(Auth auth) {
+        if (this.auths!=null&&this.auths.contains(auth)) {
+            this.auths.remove(auth);
+        }
+    }
+
+    public Integer getCreateUserId() {
         return createUserId;
     }
 
     public void setCreateUserId(Integer createUserId) {
         this.createUserId = createUserId;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getEditTime() {
-        return editTime;
-    }
-
-    public void setEditTime(LocalDateTime editTime) {
-        this.editTime = editTime;
-    }
-
-    public void removeAuth(Auth auth) {
-        if (this.auths.contains(auth)) {
-            this.auths.remove(auth);
-        }
     }
 }

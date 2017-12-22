@@ -2,7 +2,7 @@ package com.minsx.authorization.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.minsx.authorization.entity.Auth;
+import com.minsx.authorization.entity.auth.Auth;
 
 
 /**

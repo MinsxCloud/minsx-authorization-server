@@ -3,6 +3,7 @@ body,html {
     padding: 0;
     margin: 0;
     background-color: #F6F6F6;
+    overflow: hidden;
 }
 
 .top{
@@ -269,31 +270,30 @@ input{
 }
 
 .lawn{
-    background: url(../images/footer.png) no-repeat left center;
-    background-size:100%;
-    width: 980px;
-    height: 50px;
+    width: 1280px;
+    height: 100px;
     top:640px;
-    text-align: center;
-    margin:0 auto;
-}
-
-.footer{
-    width: 980px;
-    height: 50px;
-    top:690px;
-    text-align: center;
     margin:0 auto;
     color: #b2b2b2;
-    padding-top:10px;
+    text-align: center;
+}
+
+.footer-backPic{
+    background: url(../images/footer.png) no-repeat left center;
+    background-size:100%;
+    width: 900px;
+    height: 50px;
+    margin:0 auto;
+    line-height: 20px;
 }
 
 .footer .description{
-    line-height: 20px;
+    color: #b2b2b2;
+    padding:5px;
     font-size:13px;
 }
 
 .footer .copyright{
-    line-height: 20px;
+    padding:5px;
     font-size:13px;
 }
