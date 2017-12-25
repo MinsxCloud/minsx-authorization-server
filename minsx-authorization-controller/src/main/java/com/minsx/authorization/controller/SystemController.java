@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class SystemController {
 
+	private final UserService userService;
 
 	@Autowired
-	UserService userService;
+	public SystemController(UserService userService) {
+		this.userService = userService;
+	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {

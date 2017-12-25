@@ -84,14 +84,14 @@
             <div class="register-password">
                 <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62c;</i></div>
                 <div class="main-input-outside">
-                    <input type="text" name="title" id="register-password-input" type="password" placeholder="请输入密码"
+                    <input type="password" name="title" id="register-password-input"  placeholder="请输入密码"
                            class="main-input-inner">
                 </div>
             </div>
             <div class="register-rePassword">
                 <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62c;</i></div>
                 <div class="main-input-outside">
-                    <input type="text" name="title" id="register-confirmPassword-input" type="password"
+                    <input type="password" name="title" id="register-confirmPassword-input"
                            placeholder="请再次输入密码" class="main-input-inner">
                 </div>
             </div>
@@ -162,7 +162,7 @@
             <div class="login-password">
                 <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62c;</i></div>
                 <div class="main-input-outside">
-                    <input type="text" name="title" type="password" id="login-password-input" placeholder="请输入密码"
+                    <input type="password" name="title" id="login-password-input" placeholder="请输入密码"
                            class="main-input-inner">
                 </div>
             </div>
@@ -213,7 +213,7 @@
         };
         Minsx.Http.postWithOption("/oauth/token", null, option).then(function (response) {
             if (response.status === 200) {
-                var redir = Minsx.Util.getUrlParam("redir");
+                const redir = Minsx.Util.getUrlParam("redir");
                 Minsx.Cookie.set("access_token", response.data.access_token, "/");
                 if (redir === null || redir === '') {
                     window.location.href = 'https://www.minsx.com';
@@ -284,6 +284,10 @@
         let data = {
             username: $('#getPass-username-input').val(),
         };
+        if (data.username === null || data.username === '') {
+            layer.msg('用户名不能为空');
+            return;
+        }
         Minsx.Http.get("/getEmailCode",data).then(function (response) {
             if (response.status === 200) {
                 layer.tips('验证码已发送到您的邮箱', '#getPass-code-input');

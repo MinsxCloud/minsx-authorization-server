@@ -1,4 +1,4 @@
-package com.minsx.authorization.entity.type;
+package com.minsx.authorization.entity.base.type;
 
 /**
  * 权限类型

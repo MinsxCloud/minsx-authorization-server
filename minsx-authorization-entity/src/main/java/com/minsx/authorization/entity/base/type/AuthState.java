@@ -1,12 +1,15 @@
-package com.minsx.authorization.entity.type;
-
-public enum MenuState {
-
+package com.minsx.authorization.entity.base.type;
+/**
+ * AuthStatus
+ * created by Joker on 2017年11月1日
+ */
+public enum AuthState {
+	
 	ENABLE(1),DISABLE(-1),UNKNOWN(0);
 
     Integer value;
 
-    MenuState(Integer value){
+    AuthState(Integer value){
         this.value=value;
     }
     
@@ -18,7 +21,7 @@ public enum MenuState {
         this.value = value;
     }
     
-    public static MenuState getMenuState(Integer value) {  
+    public static AuthState getAuthState(Integer value) {
          switch (value) {
             case 1:
                 return ENABLE;
@@ -27,5 +30,6 @@ public enum MenuState {
             default:
                 return UNKNOWN;
         }
-    }  
+    }
+
 }

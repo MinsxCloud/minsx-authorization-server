@@ -1,6 +1,6 @@
 package com.minsx.authorization.service.implement;
 
-import com.minsx.authorization.entity.type.UserState;
+import com.minsx.authorization.entity.base.type.UserState;
 import com.minsx.authorization.service.util.MailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.minsx.authorization.entity.User;
+import com.minsx.authorization.entity.system.User;
 import com.minsx.authorization.repository.UserRepository;
 import com.minsx.authorization.api.UserService;
 import org.springframework.util.StringUtils;

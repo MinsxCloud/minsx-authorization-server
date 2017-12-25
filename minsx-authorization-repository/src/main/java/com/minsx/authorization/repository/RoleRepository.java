@@ -1,8 +1,7 @@
 package com.minsx.authorization.repository;
 
+import com.minsx.authorization.entity.base.auth.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.minsx.authorization.entity.Role;
 
 /**
  * RoleRepository

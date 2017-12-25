@@ -1,16 +1,16 @@
-package com.minsx.authorization.entity.type;
+package com.minsx.authorization.entity.base.type;
 
 /**
  * 权限类型
  * Created by Joker on 2017/8/31.
  */
-public enum MenuType {
+public enum GroupType {
 
-    LINK("LINK"), IFRAME("IFRAME"), COMMAND("COMMAND"), NONE("NONE"), UNKNOWN("UNKNOWN");
+    SYSTEM("SYSTEM"), DEVELOPER("DEVELOPER"),UNKNOWN("UNKNOWN");
 
     String value;
 
-    MenuType(String value) {
+    GroupType(String value) {
         this.value = value;
     }
 
@@ -22,7 +22,7 @@ public enum MenuType {
         this.value = value;
     }
 
-    public static MenuType getMenuType(String value) {
+    public static GroupType getMenuType(String value) {
         try {
             return valueOf(value);
         } catch (Exception e) {

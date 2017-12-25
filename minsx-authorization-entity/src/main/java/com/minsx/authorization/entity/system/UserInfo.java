@@ -1,17 +1,17 @@
-package com.minsx.authorization.entity;
+package com.minsx.authorization.entity.system;
 
-import com.minsx.authorization.entity.base.SimpleMinsxEntity;
+import com.minsx.authorization.entity.base.simple.SimpleMinsxEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "minsx_info")
+@Table(name = "minsx_sys_userinfo")
 public class UserInfo extends SimpleMinsxEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( name = "user_info_id")
+    @Column( name = "userinfo_id")
     private Integer id;
 
     @Column(name = "sex")

@@ -17,8 +17,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	private final UserDetailsService userDetailsService;
+
 	@Autowired
-	private UserDetailsService userDetailsService;
+	public SecurityConfig(UserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
+	}
 
 	@Autowired
 	public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {

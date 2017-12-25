@@ -1,12 +1,12 @@
-package com.minsx.authorization.entity.type;
+package com.minsx.authorization.entity.base.type;
 
-public enum UrlState {
+public enum UserGroupState {
 
     ENABLE(1), DISABLE(-1), UNKNOWN(0);
 
     Integer value;
 
-    UrlState(Integer value) {
+    UserGroupState(Integer value) {
         this.value = value;
     }
 
@@ -18,7 +18,7 @@ public enum UrlState {
         this.value = value;
     }
 
-    public static UrlState getUrlState(Integer value) {
+    public static UserGroupState getUserGroupState(Integer value) {
         switch (value) {
             case 1:
                 return ENABLE;

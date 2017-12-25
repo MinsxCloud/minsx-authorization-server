@@ -1,4 +1,4 @@
-package com.minsx.authorization.entity.base;
+package com.minsx.authorization.entity.base.simple;
 
 /**
  * MinsxEntity

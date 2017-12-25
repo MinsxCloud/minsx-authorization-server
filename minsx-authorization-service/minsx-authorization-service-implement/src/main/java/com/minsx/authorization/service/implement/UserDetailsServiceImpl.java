@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.minsx.authorization.entity.base.auth.Auth;
+import com.minsx.authorization.entity.base.auth.Group;
+import com.minsx.authorization.entity.base.auth.Role;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.minsx.authorization.entity.auth.Auth;
-import com.minsx.authorization.entity.Group;
-import com.minsx.authorization.entity.Role;
-import com.minsx.authorization.entity.User;
+import com.minsx.authorization.entity.system.User;
 import com.minsx.authorization.repository.UserRepository;
 
 /**

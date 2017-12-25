@@ -1,8 +1,8 @@
-package com.minsx.authorization.entity;
+package com.minsx.authorization.entity.base.auth;
 
 import com.alibaba.fastjson.JSON;
-import com.minsx.authorization.entity.base.SimpleMinsxEntity;
-import com.minsx.authorization.entity.type.UserGroupState;
+import com.minsx.authorization.entity.base.simple.SimpleMinsxEntity;
+import com.minsx.authorization.entity.base.type.UserGroupState;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,6 +31,9 @@ public class Group extends SimpleMinsxEntity implements Serializable {
     
     @Column(nullable = false, name = "alias")
     private String alias;
+
+    @Column(nullable = false, name = "type")
+    private String type;
     
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name = "minsx_group_role",
@@ -53,15 +56,15 @@ public class Group extends SimpleMinsxEntity implements Serializable {
         return JSON.toJSONString(this);
     }
 
-    public Integer geId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getParentId() {
+    public Integer getParentId() {
 		return parentId;
 	}
 
@@ -85,7 +88,15 @@ public class Group extends SimpleMinsxEntity implements Serializable {
 		this.alias = alias;
 	}
 
-	public UserGroupState getState() {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public UserGroupState getState() {
 		return UserGroupState.getUserGroupState(this.state);
 	}
 
@@ -124,4 +135,9 @@ public class Group extends SimpleMinsxEntity implements Serializable {
     public void setCreateUserId(Integer createUserId) {
         this.createUserId = createUserId;
     }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
 }

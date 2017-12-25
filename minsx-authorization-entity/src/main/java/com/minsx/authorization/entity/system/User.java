@@ -1,11 +1,15 @@
-package com.minsx.authorization.entity;
+package com.minsx.authorization.entity.system;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.minsx.authorization.entity.base.SimpleMinsxEntity;
-import com.minsx.authorization.entity.type.UserState;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.minsx.authorization.entity.base.auth.Group;
+import com.minsx.authorization.entity.base.simple.SimpleMinsxEntity;
+import com.minsx.authorization.entity.base.type.UserState;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -20,7 +24,7 @@ import java.util.Set;
  * Created by Joker on 2017/8/30.
  */
 @Entity
-@Table(name = "minsx_user")
+@Table(name = "minsx_sys_user")
 public class User extends SimpleMinsxEntity implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 7680851689006674668L;
@@ -30,9 +34,12 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
     @Column(nullable = false, name = "user_id")
     private Integer id;
 
+    @Length(min = 4, max = 32)
     @Column(nullable = false, name = "username", unique = true)
     private String userName;
 
+    @NotBlank
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(nullable = false, name = "password")
     private String passWord;
 
@@ -42,12 +49,12 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
     @Column(nullable = false, name = "state")
     private Integer state;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "user_info_id")
     private UserInfo userInfo;
 
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    @JoinTable(name = "minsx_user_group",
+    @JoinTable(name = "minsx_sys_user_group",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "group_id"))
     private List<Group> groups;
@@ -64,9 +71,11 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
     @Column(name = "signature")
     private String signature;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(nullable = false, name = "register_time")
     private LocalDateTime registerTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(nullable = false, name = "last_login_time")
     private LocalDateTime lastLoginTime;
 
@@ -75,19 +84,6 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
 
     @Column(nullable = false, name = "last_login_ip")
     private String lastLoginIp;
-
-    public static User me() {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String json;
-		User user = null;
-		try {
-		    json = JSON.toJSONString(principal);
-            user = JSON.parseObject(json,User.class);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return user;
-	}
 
     @Override
     public String toString() {
@@ -112,6 +108,7 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return this.passWord;
     }
@@ -149,16 +146,8 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getPassWord() {
-        return passWord;
     }
 
     public void setPassWord(String passWord) {

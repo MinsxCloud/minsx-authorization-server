@@ -17,12 +17,16 @@ import org.springframework.web.filter.CorsFilter;
 @Order(-20)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
-	@Autowired
-	private LoginSuccessHandler loginSuccessHandler;
+	private final LoginSuccessHandler loginSuccessHandler;
+
+	private final LoginFailHandler loginFailHandler;
 
 	@Autowired
-	private LoginFailHandler loginFailHandler;
-	
+	public WebSecurityConfig(LoginSuccessHandler loginSuccessHandler, LoginFailHandler loginFailHandler) {
+		this.loginSuccessHandler = loginSuccessHandler;
+		this.loginFailHandler = loginFailHandler;
+	}
+
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -38,18 +42,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .permitAll()
             .logoutSuccessUrl("/login")
             .and()
-        .authorizeRequests()
-        .and()
         .requestMatchers()
-        	.antMatchers("/login","/register","/getEmailCode","/oauth/authorize", "/oauth/confirm_access")
-        	.and()
+        	.antMatchers("/oauth/authorize", "/oauth/confirm_access")
+			.antMatchers("/login","/register","/getEmailCode","/geetTest")
+			.and()
         .authorizeRequests()
+			.antMatchers("/login","/register","/getEmailCode","/geetTest")
+        	.permitAll()
         	.anyRequest().authenticated();
     }
 	
 	@Override
 	 public void configure(WebSecurity web) throws Exception {
-	        web.ignoring().antMatchers("/register","/getEmailCode","/geetTest","/static/**","/css/**","/js/**","/frame/**","/fonts/**","/images/**");
+	        web.ignoring().antMatchers("/static/**","/css/**","/js/**","/frame/**","/fonts/**","/images/**");
 	 }
 
 	/**

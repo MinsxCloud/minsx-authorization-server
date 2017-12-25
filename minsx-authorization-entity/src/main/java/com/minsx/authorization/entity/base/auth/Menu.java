@@ -1,9 +1,9 @@
-package com.minsx.authorization.entity.auth;
+package com.minsx.authorization.entity.base.auth;
 
 import com.alibaba.fastjson.JSON;
-import com.minsx.authorization.entity.base.SimpleMinsxEntity;
-import com.minsx.authorization.entity.type.MenuState;
-import com.minsx.authorization.entity.type.MenuType;
+import com.minsx.authorization.entity.base.simple.SimpleMinsxEntity;
+import com.minsx.authorization.entity.base.type.MenuState;
+import com.minsx.authorization.entity.base.type.MenuType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,9 +26,12 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
     @Column(nullable = false, name = "parent_menu_id")
     private Integer parentMenuId;
 
-    @Column(nullable = false, name = "name")
+    @Column(nullable = false, unique = true, name = "name")
     private String name;
-    
+
+    @Column(nullable = false,name = "icon")
+    private String icon;
+
     @Column(nullable = false,name = "alias")
     private String alias;
 
@@ -44,8 +47,8 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
     @Column(nullable = false, name = "type")
     private String type;
     
-    @Column(name = "discription")
-    private String discription;
+    @Column(name = "description")
+    private String description;
 
     //创建者ID
 	@Column(nullable = false, name = "create_user_id")
@@ -79,7 +82,15 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-    
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     public String getAlias() {
 		return alias;
 	}
@@ -88,15 +99,15 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
 		this.alias = alias;
 	}
 
-	public String getDiscription() {
-		return discription;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDiscription(String discription) {
-		this.discription = discription;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public MenuState getState() {
+    public MenuState getState() {
 		return MenuState.getMenuState(this.state);
 	}
 

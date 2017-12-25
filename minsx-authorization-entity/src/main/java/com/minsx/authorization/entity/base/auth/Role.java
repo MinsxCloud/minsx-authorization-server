@@ -1,9 +1,9 @@
-package com.minsx.authorization.entity;
+package com.minsx.authorization.entity.base.auth;
 
 import com.alibaba.fastjson.JSON;
-import com.minsx.authorization.entity.auth.Auth;
-import com.minsx.authorization.entity.base.SimpleMinsxEntity;
-import com.minsx.authorization.entity.type.RoleState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.minsx.authorization.entity.base.simple.SimpleMinsxEntity;
+import com.minsx.authorization.entity.base.type.RoleState;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -30,6 +30,7 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
     @Column(nullable = false, name = "alias")
     private String alias;
 
+    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name = "minsx_role_auth",
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"),
@@ -39,8 +40,8 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
     @Column(nullable = false, name = "state")
     private Integer state;
     
-    @Column(name = "discription")
-    private String discription;
+    @Column(name = "description")
+    private String description;
 
     //创建者ID
 	@Column(nullable = false, name = "create_user_id")
@@ -80,17 +81,15 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
 		this.alias = alias;
 	}
 
-	public String getDiscription() {
-		return discription;
-	}
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setDiscription(String discription) {
-		this.discription = discription;
-	}
-
-
-	public List<Auth> getAuths() {
+    public List<Auth> getAuths() {
         return auths;
     }
 

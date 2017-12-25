@@ -1,9 +1,9 @@
-package com.minsx.authorization.entity.auth;
+package com.minsx.authorization.entity.base.auth;
 
 import com.alibaba.fastjson.JSON;
-import com.minsx.authorization.entity.base.SimpleMinsxEntity;
-import com.minsx.authorization.entity.type.AuthState;
-import com.minsx.authorization.entity.type.AuthType;
+import com.minsx.authorization.entity.base.simple.SimpleMinsxEntity;
+import com.minsx.authorization.entity.base.type.AuthState;
+import com.minsx.authorization.entity.base.type.AuthType;
 
 import javax.persistence.*;
 import java.io.Serializable;
