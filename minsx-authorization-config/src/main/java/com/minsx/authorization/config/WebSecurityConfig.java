@@ -39,10 +39,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .logoutSuccessUrl("/login")
             .and()
         .authorizeRequests()
-            .antMatchers("/**").permitAll()
         .and()
         .requestMatchers()
-        	.antMatchers("/login**","/oauth/authorize", "/oauth/confirm_access")
+        	.antMatchers("/login","/register","/getEmailCode","/oauth/authorize", "/oauth/confirm_access")
         	.and()
         .authorizeRequests()
         	.anyRequest().authenticated();
@@ -50,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	 public void configure(WebSecurity web) throws Exception {
-	        web.ignoring().antMatchers("/geetTest","/static/**","/css/**","/js/**","/frame/**","/fonts/**","/images/**");
+	        web.ignoring().antMatchers("/register","/getEmailCode","/geetTest","/static/**","/css/**","/js/**","/frame/**","/fonts/**","/images/**");
 	 }
 
 	/**

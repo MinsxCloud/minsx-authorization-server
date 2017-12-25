@@ -1,4 +1,5 @@
 /*! minsx v1.0.0 Copyright © 2016-2017 minsx.com All rights reserved*/
+let instance = axios.create();
 Minsx = {
     Util: {
         /**
@@ -39,12 +40,34 @@ Minsx = {
         }
     },
     Http: {
-        get: function (url, async) {
-            xmlhttp.open("GET", url, async);
+        get(url, param) {
+            return instance.get(url,{params: param});
         },
-        post: function (url, async) {
-            xmlhttp.open("POST", url, async);
-            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        delete(url, param) {
+            return instance.delete(url, {params: param});
+        },
+        post(url, body, param) {
+            return instance.post(url, body,  {params: param});
+        },
+        postJson(url, body, param) {
+            let option = {
+                headers: {'Content-Type': 'application/json'}
+            };
+            if (param) option.params = param;
+            return instance.post(url, body, option);
+        },
+        postWithOption(url, body, option) {
+            return instance.post(url, body,  option);
+        },
+        put(url, body, param) {
+            return instance.put(url,body,{params: param});
+        },
+        putJson(url, body, param) {
+            let option = {
+                headers: {'Content-Type': 'application/json'}
+            };
+            if (param) option.params = param;
+            return instance.put(url, body, option);
         }
     },
     Cookie: {

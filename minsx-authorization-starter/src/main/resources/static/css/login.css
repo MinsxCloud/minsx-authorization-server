@@ -7,14 +7,10 @@ body,html {
 }
 
 .top{
-   /* border-bottom:5px solid #52B7B5 ;*/
     width: 980px;
     height: 40px;
     text-align: center;
     margin:0 auto;
-    /*background: url(../images/whiteLogo.png) no-repeat left center;
-    background-size:30%;*/
-    /*background-color: white;*/
 }
 
 .main{
@@ -36,7 +32,6 @@ body,html {
 }
 
 .main .content .notice {
-    /*border:1px solid black;*/
     position: absolute;
     width: 400px;
     height:500px;
@@ -49,7 +44,6 @@ body,html {
     background-color: white;
     filter:alpha(Opacity=60);-moz-opacity:0.6;opacity: 0.6;
     padding: 10px;
-    /*border:1px solid black;*/
     position: absolute;
     width: 350px;
     height:480px;
@@ -243,6 +237,7 @@ body,html {
     left: 10px;
     width: 50px;
     height: 50px;
+    line-height: 50px;
     padding: 5px;
 }
 
@@ -259,15 +254,10 @@ body,html {
     height: 40px;
     border-width: 0;
     border-bottom: 1px solid #b2b2b2;
-
+    font-size:14px;
+    font-weight:bold;
 }
 /****login and register common part begin***/
-
-
-input{
-    font-size: 14px;
-    font-weight: 600;
-}
 
 .lawn{
     width: 1280px;
@@ -288,12 +278,9 @@ input{
 }
 
 .footer .description{
-    color: #b2b2b2;
     padding:5px;
-    font-size:13px;
 }
 
 .footer .copyright{
     padding:5px;
-    font-size:13px;
 }

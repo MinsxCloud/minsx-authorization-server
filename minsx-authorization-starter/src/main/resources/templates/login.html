@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/login.css">
     <link rel="stylesheet" type="text/css" href="frame/layui/css/layui.css"/>
     <script src="js/jquery.min.js"></script>
+    <script src="js/axios.js"></script>
     <script src="js/minsx.js"></script>
     <script src="frame/layui/layui.js"></script>
 
@@ -17,6 +18,56 @@
     <div class="content">
         <!--notice-->
         <div class="notice">
+
+            <p style="text-align:center;">
+                <strong><span style="font-size:24px;"><span style="color:#E56600;"><br/>
+            </span></span></strong>
+            </p>
+            <p style="text-align:center;">
+                <strong><span style="font-size:24px;"><span style="color:#E56600;"><br/>
+            </span></span></strong>
+            </p>
+            <p style="text-align:center;">
+                <strong><span style="font-size:24px;"><span style="color:#E56600;"><br/>
+            </span></span></strong>
+            </p>
+            <p style="text-align:center;">
+                <strong><span style="font-size:24px;"><span style="color:#E56600;font-family:Microsoft YaHei,serif;">Minsx</span><span
+                        style="font-family:Microsoft YaHei,serif;"> 米斯云平台</span></span></strong>
+            </p>
+            <p style="text-align:center;">
+                <strong><span style="font-size:24px;color:#333333;"><span
+                        style="color:#333333;font-family:-apple-system, BlinkMacSystemFont, Microsoft YaHei,serif;font-size:14px;"><span
+                        style="font-size:14px;font-family:Microsoft YaHei,serif;color:#333333;">是一款基于Spring的轻量级云平台框架</span></span></span></strong><strong><span
+                    style="font-size:14px;"><span
+                    style="color:#999999;font-family:-apple-system, BlinkMacSystemFont, Microsoft YaHei,serif;font-size:14px;background-color:#FFFFFF;"><span
+                    style="font-size:14px;"><span
+                    style="font-family:Microsoft YaHei,serif;font-size:14px;"></span></span></span></span></strong>
+            </p>
+            <p style="text-align:center;">
+                <strong><span style="font-size:14px;color:#333333;"><span
+                        style="color:#333333;font-family:Microsoft YaHei,serif;font-size:14px;">她可以让你以较短的时间开发出企业级云平台应用</span></span></strong>
+            </p>
+            <p style="text-align:center;">
+                <strong><span style="font-size:14px;color:#999999;"><span
+                        style="color:#999999;font-family:Microsoft YaHei,serif;font-size:14px;"><br/>
+            </span></span></strong>
+            </p>
+            <p style="text-align:center;">
+                <span style="font-size:12px;font-family:Microsoft YaHei,serif;color:#333333;"><span
+                        style="color:#333333;font-family:Microsoft YaHei,serif;font-size:12px;"><strong>如果您有兴趣欢迎加入我们</strong></span></span>
+            </p>
+            <p style="text-align:center;">
+                <span style="font-size:12px;font-family:Microsoft YaHei,serif;color:#333333;"><span
+                        style="color:#333333;font-family:Microsoft YaHei,serif;font-size:12px;"><strong>E-mail：web@wsssw.com</strong></span></span>
+            </p>
+            <p style="text-align:center;">
+                <span style="font-size:14px;font-family:Microsoft YaHei,serif;"><span
+                        style="color:#999999;font-family:Microsoft YaHei,serif;"><span
+                        style="font-size:12px;color:#333333;"><strong>Git：</strong></span><span
+                        style="font-size:12px;color:#333333;"><strong>https://github.com/MinsxFramework</strong></span></span></span>
+            </p>
+
         </div>
 
         <!--register-->
@@ -24,25 +75,28 @@
             <div class="register-header">
             </div>
             <div class="register-username">
-                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe609;</i></div>
                 <div class="main-input-outside">
-                    <input type="text" name="title" placeholder="请输入用户名/邮箱/手机号码" class="main-input-inner">
+                    <input type="text" name="title" id="register-username-input" placeholder="请输入用户名/邮箱/手机号码"
+                           class="main-input-inner">
                 </div>
             </div>
             <div class="register-password">
-                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62c;</i></div>
                 <div class="main-input-outside">
-                    <input type="text" name="title" type="password" placeholder="请输入密码" class="main-input-inner">
+                    <input type="text" name="title" id="register-password-input" type="password" placeholder="请输入密码"
+                           class="main-input-inner">
                 </div>
             </div>
             <div class="register-rePassword">
-                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62c;</i></div>
                 <div class="main-input-outside">
-                    <input type="text" name="title" type="password" placeholder="请再次输入密码" class="main-input-inner">
+                    <input type="text" name="title" id="register-confirmPassword-input" type="password"
+                           placeholder="请再次输入密码" class="main-input-inner">
                 </div>
             </div>
             <div class="register-button">
-                <button class="layui-btn" style="width: 300px">注册</button>
+                <button class="layui-btn" onclick="register()" style="width: 300px">注册</button>
             </div>
             <div class="register-footer">
                 <a href="javascript:void(0);" onclick="showGetPass()">
@@ -60,28 +114,29 @@
             <div class="getPass-header">
             </div>
             <div class="getPass-username">
-                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe609;</i></div>
                 <div class="main-input-outside">
-                    <input type="text" name="title" placeholder="请输入邮箱" class="main-input-inner">
+                    <input type="text" id="getPass-username-input" placeholder="请输入用户名/邮箱/手机号码"
+                           class="main-input-inner">
                     <a href="javascript:void(0);" onclick="sendCode()">
                         <div class="getPass-sendCode">发送验证码</div>
                     </a>
                 </div>
             </div>
             <div class="getPass-password">
-                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62c;</i></div>
                 <div class="main-input-outside">
-                    <input type="text" name="title" type="password" placeholder="请输入新密码" class="main-input-inner">
+                    <input type="password" id="getPass-password-input" placeholder="请输入新密码" class="main-input-inner">
                 </div>
             </div>
             <div class="getPass-code">
-                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe63a;</i></div>
                 <div class="main-input-outside">
-                    <input type="text" name="title" id="code" placeholder="请输入验证码" class="main-input-inner">
+                    <input type="text" id="getPass-code-input" placeholder="请输入验证码" class="main-input-inner">
                 </div>
             </div>
             <div class="getPass-button">
-                <button class="layui-btn" style="width: 300px">找回密码</button>
+                <button class="layui-btn" style="width: 300px" onclick="getPass()">找回密码</button>
             </div>
             <div class="getPass-footer">
                 <a href="javascript:void(0);" onclick="showLogin()">
@@ -98,14 +153,14 @@
             <div class="login-header">
             </div>
             <div class="login-username">
-                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe609;</i></div>
                 <div class="main-input-outside">
                     <input type="text" name="title" id="login-username-input" placeholder="请输入用户名/邮箱/手机号码"
                            class="main-input-inner">
                 </div>
             </div>
             <div class="login-password">
-                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62e;</i></div>
+                <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62c;</i></div>
                 <div class="main-input-outside">
                     <input type="text" name="title" type="password" id="login-password-input" placeholder="请输入密码"
                            class="main-input-inner">
@@ -119,7 +174,7 @@
                 </div>
             </div>
             <div class="login-button">
-                <button class="layui-btn" id="loginButton" style="width: 300px">登录</button>
+                <button class="layui-btn" onclick="login()" style="width: 300px">登录</button>
             </div>
             <div class="login-footer">
                 <a href="javascript:void(0);" onclick="showGetPass()">
@@ -143,42 +198,99 @@
     layui.use('form', function () {
     });
 
-    $("#loginButton").click(function () {
-        login();
-    });
-
+    /*登录*/
     function login() {
-        $.ajax({
-            url: '/oauth/token',
-            dataType: 'JSON',
-            async: false,
-            crossDomain: true,
-            data: {
+        let option = {
+            headers: {
+                'Authorization': 'Basic Z29vZHNhdmU6Z29vZHNhdmU=',
+                'Content-Type': 'application/json'
+            },
+            params: {
                 grant_type: 'password',
                 username: $('#login-username-input').val(),
                 password: $('#login-password-input').val()
-            },
-            method: 'POST',
-            beforeSend: function (request) {
-                request.setRequestHeader('Authorization', 'Basic Z29vZHNhdmU6Z29vZHNhdmU=');
-            },
-            success: function (data) {
+            }
+        };
+        Minsx.Http.postWithOption("/oauth/token", null, option).then(function (response) {
+            if (response.status === 200) {
                 var redir = Minsx.Util.getUrlParam("redir");
-                Minsx.Cookie.set("access_token", data.access_token, "/");
+                Minsx.Cookie.set("access_token", response.data.access_token, "/");
                 if (redir === null || redir === '') {
                     window.location.href = 'https://www.minsx.com';
                 } else {
                     window.location.href = redir;
                 }
-            },
-            error: function (data) {
-                layer.msg('用户名或密码错误！');
             }
+        }).catch(function (error) {
+            layer.msg('用户名或密码不正确！');
+        });
+    }
+
+    /*注册*/
+    function register() {
+        let data = {
+            username: $('#register-username-input').val(),
+            password: $('#register-password-input').val(),
+            confirmPassword: $('#register-confirmPassword-input').val()
+        };
+        if (data.password !== data.confirmPassword) {
+            layer.msg('两次密码不一致');
+            return;
+        }
+        Minsx.Http.post("/register", null, data).then(function (response) {
+            if (response.status === 200) {
+                layer.msg('注册成功！');
+                $('#login-username-input').val(data.username);
+                $('#login-password-input').val(data.password);
+                showLogin();
+            }
+        }).catch(function (error) {
+            layer.msg(error.response.data);
+        });
+    }
+
+    /*找回密码*/
+    function getPass() {
+        let data = {
+            username: $('#getPass-username-input').val(),
+            password: $('#getPass-password-input').val(),
+            code: $('#getPass-code-input').val()
+        };
+        if (data.username === null || data.username === '') {
+            layer.msg('用户名不能为空');
+            return;
+        }
+        if (data.password === null || data.password === '') {
+            layer.msg('密码不能为空');
+            return;
+        }
+        if (data.code === null || data.code === '') {
+            layer.msg('验证码不能为空');
+            return;
+        }
+        Minsx.Http.post("/getPass", null, data).then(function (response) {
+            if (response.status === 200) {
+                layer.msg('重置密码成功！');
+                $('#login-username-input').val(data.username);
+                $('#login-password-input').val(data.password);
+                showLogin();
+            }
+        }).catch(function (error) {
+            layer.msg(error.response.data);
         });
     }
 
     function sendCode() {
-        layer.tips('验证码已发送到您的邮箱', '#code');
+        let data = {
+            username: $('#getPass-username-input').val(),
+        };
+        Minsx.Http.get("/getEmailCode",data).then(function (response) {
+            if (response.status === 200) {
+                layer.tips('验证码已发送到您的邮箱', '#getPass-code-input');
+            }
+        }).catch(function (error) {
+            layer.msg(error.response.data);
+        });
     }
 
     $("#registerBox").hide();
