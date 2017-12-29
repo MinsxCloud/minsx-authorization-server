@@ -1,20 +1,16 @@
-package com.minsx.authorization.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
+package com.minsx.authorization.repository.user;
 
 import com.minsx.authorization.entity.system.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * UserRepository
  * Created by Joker on 2017/8/30.
  */
-@Component
+@Repository
 public interface UserRepository extends JpaRepository<User,Integer>{
 	
-	User findById(Integer id);
-	
 	User findByUserName(String userName);
-	
 
 }

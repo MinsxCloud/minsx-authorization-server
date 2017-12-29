@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.minsx.authorization.entity.system.User;
-import com.minsx.authorization.repository.UserRepository;
+import com.minsx.authorization.repository.user.UserRepository;
 import com.minsx.authorization.api.UserService;
 import org.springframework.util.StringUtils;
 
@@ -19,10 +19,14 @@ import java.util.Random;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public ResponseEntity<?> register(String username, String password) {
