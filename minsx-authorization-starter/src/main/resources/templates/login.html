@@ -59,7 +59,7 @@
             </p>
             <p style="text-align:center;">
                 <span style="font-size:12px;font-family:Microsoft YaHei,serif;color:#333333;"><span
-                        style="color:#333333;font-family:Microsoft YaHei,serif;font-size:12px;"><strong>E-mail：web@wsssw.com</strong></span></span>
+                        style="color:#333333;font-family:Microsoft YaHei,serif;font-size:12px;"><strong>E-mail：support@minsx.com</strong></span></span>
             </p>
             <p style="text-align:center;">
                 <span style="font-size:14px;font-family:Microsoft YaHei,serif;"><span
@@ -211,6 +211,13 @@
                 password: $('#login-password-input').val()
             }
         };
+        if (option.params.username===''){
+            layer.msg('用户名不能为空！');
+            return;
+        }else if (option.params.password===''){
+            layer.msg('密码不能为空！');
+            return;
+        }
         Minsx.Http.postWithOption("/oauth/token", null, option).then(function (response) {
             if (response.status === 200) {
                 const redir = Minsx.Util.getUrlParam("redir");
