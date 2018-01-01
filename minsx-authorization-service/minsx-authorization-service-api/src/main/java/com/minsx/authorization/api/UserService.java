@@ -1,10 +1,26 @@
 package com.minsx.authorization.api;
 
+import com.minsx.authorization.entity.system.User;
 import org.springframework.http.ResponseEntity;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 public interface UserService {
 
-    ResponseEntity<?> register(String username,String password);
+    /**
+     *该方法用于登录之前对验证码及用户类型做相关校验
+     */
+    void verifyAuthBeforeGetToken(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException;
+
+    ResponseEntity<?> register(HttpServletRequest request, String username, String password);
 
     ResponseEntity<?> getEmailCode(String username);
+
+    User getUserByUsernameOrEmailOrPhone(String username);
+
 }

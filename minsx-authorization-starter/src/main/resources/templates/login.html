@@ -8,6 +8,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/axios.js"></script>
     <script src="js/minsx.js"></script>
+    <script src="js/gt.js"></script>
     <script src="frame/layui/layui.js"></script>
 
 </head>
@@ -65,7 +66,7 @@
                 <span style="font-size:14px;font-family:Microsoft YaHei,serif;"><span
                         style="color:#999999;font-family:Microsoft YaHei,serif;"><span
                         style="font-size:12px;color:#333333;"><strong>Git：</strong></span><span
-                        style="font-size:12px;color:#333333;"><strong>https://github.com/MinsxFramework</strong></span></span></span>
+                        style="font-size:12px;color:#333333;"><strong>https://github.com/MinsxCloud</strong></span></span></span>
             </p>
 
         </div>
@@ -84,7 +85,7 @@
             <div class="register-password">
                 <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62c;</i></div>
                 <div class="main-input-outside">
-                    <input type="password" name="title" id="register-password-input"  placeholder="请输入密码"
+                    <input type="password" name="title" id="register-password-input" placeholder="请输入密码"
                            class="main-input-inner">
                 </div>
             </div>
@@ -96,7 +97,7 @@
                 </div>
             </div>
             <div class="register-button">
-                <button class="layui-btn" onclick="register()" style="width: 300px">注册</button>
+                <button class="layui-btn" id="registerButton" style="width: 300px">注册</button>
             </div>
             <div class="register-footer">
                 <a href="javascript:void(0);" onclick="showGetPass()">
@@ -174,7 +175,7 @@
                 </div>
             </div>
             <div class="login-button">
-                <button class="layui-btn" onclick="login()" style="width: 300px">登录</button>
+                <button class="layui-btn" id="loginButton" style="width: 300px">登录</button>
             </div>
             <div class="login-footer">
                 <a href="javascript:void(0);" onclick="showGetPass()">
@@ -198,8 +199,45 @@
     layui.use('form', function () {
     });
 
-    /*登录*/
-    function login() {
+    //-----------------------------登录--------------------------------
+    $.ajax({
+        url: "/verify/initial?t=" + (new Date()).getTime(),
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+            initGeetest({
+                gt: data.gt,
+                challenge: data.challenge,
+                offline: !data.success,
+                new_captcha: data.new_captcha,
+                product: "bind",
+                width: "300px"
+            }, handlerLogin);
+        }
+    });
+
+    var handlerLogin = function (captchaObj) {
+        captchaObj.onReady(function () {
+        }).onSuccess(function () {
+            var result = captchaObj.getValidate();
+            if (!result) {
+                return layer.msg('请完成验证!');
+            }
+            login(result);
+        });
+        $('#loginButton').click(function () {
+            if ($('#login-username-input').val() === '') {
+                layer.msg('用户名不能为空！');
+                return;
+            } else if ($('#login-password-input').val() === '') {
+                layer.msg('密码不能为空！');
+                return;
+            }
+            captchaObj.verify();
+        });
+    };
+
+    function login(result) {
         let option = {
             headers: {
                 'Authorization': 'Basic Z29vZHNhdmU6Z29vZHNhdmU=',
@@ -207,17 +245,14 @@
             },
             params: {
                 grant_type: 'password',
+                resource: 'web',
                 username: $('#login-username-input').val(),
-                password: $('#login-password-input').val()
+                password: $('#login-password-input').val(),
+                geetest_challenge: result.geetest_challenge,
+                geetest_validate: result.geetest_validate,
+                geetest_seccode: result.geetest_seccode
             }
         };
-        if (option.params.username===''){
-            layer.msg('用户名不能为空！');
-            return;
-        }else if (option.params.password===''){
-            layer.msg('密码不能为空！');
-            return;
-        }
         Minsx.Http.postWithOption("/oauth/token", null, option).then(function (response) {
             if (response.status === 200) {
                 const redir = Minsx.Util.getUrlParam("redir");
@@ -229,21 +264,71 @@
                 }
             }
         }).catch(function (error) {
-            layer.msg('用户名或密码不正确！');
+            if (error.response.data.error) {
+                layer.msg('用户名或密码不正确！');
+            } else {
+                layer.msg(error.response.data);
+            }
         });
     }
 
-    /*注册*/
-    function register() {
+
+    //--------------------注册---------------------------
+    $.ajax({
+        url: "/verify/initial?t=" + (new Date()).getTime(),
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+            initGeetest({
+                gt: data.gt,
+                challenge: data.challenge,
+                offline: !data.success,
+                new_captcha: data.new_captcha,
+                product: "bind",
+                width: "300px"
+            }, handlerRegister);
+        }
+    });
+
+    var handlerRegister = function (captchaObj) {
+        captchaObj.onReady(function () {
+        }).onSuccess(function () {
+            var result = captchaObj.getValidate();
+            if (!result) {
+                return layer.msg('请完成验证!');
+            }
+            register(result);
+        });
+        $('#registerButton').click(function () {
+            let data = {
+                username: $('#register-username-input').val(),
+                password: $('#register-password-input').val(),
+                confirmPassword: $('#register-confirmPassword-input').val()
+            };
+            if (data.username === '') {
+                layer.msg('用户名不能为空！');
+                return;
+            } else if (data.password === '' || data.confirmPassword === '') {
+                layer.msg('密码不能为空！');
+                return;
+            }
+            if (data.password !== data.confirmPassword) {
+                layer.msg('两次密码不一致');
+                return;
+            }
+            captchaObj.verify();
+        });
+    };
+
+    function register(result) {
         let data = {
             username: $('#register-username-input').val(),
             password: $('#register-password-input').val(),
-            confirmPassword: $('#register-confirmPassword-input').val()
+            confirmPassword: $('#register-confirmPassword-input').val(),
+            geetest_challenge: result.geetest_challenge,
+            geetest_validate: result.geetest_validate,
+            geetest_seccode: result.geetest_seccode
         };
-        if (data.password !== data.confirmPassword) {
-            layer.msg('两次密码不一致');
-            return;
-        }
         Minsx.Http.post("/register", null, data).then(function (response) {
             if (response.status === 200) {
                 layer.msg('注册成功！');
@@ -256,12 +341,12 @@
         });
     }
 
-    /*找回密码*/
+    //--------------------找回密码---------------------------
     function getPass() {
         let data = {
             username: $('#getPass-username-input').val(),
             password: $('#getPass-password-input').val(),
-            code: $('#getPass-code-input').val()
+            code: $('#getPass-code-input').val(),
         };
         if (data.username === null || data.username === '') {
             layer.msg('用户名不能为空');
@@ -295,7 +380,7 @@
             layer.msg('用户名不能为空');
             return;
         }
-        Minsx.Http.get("/getEmailCode",data).then(function (response) {
+        Minsx.Http.get("/getEmailCode", data).then(function (response) {
             if (response.status === 200) {
                 layer.tips('验证码已发送到您的邮箱', '#getPass-code-input');
             }

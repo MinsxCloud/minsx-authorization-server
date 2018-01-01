@@ -129,5 +129,7 @@
         <module>minsx-authorization-controller</module>
         <module>minsx-authorization-service</module>
         <module>minsx-authorization-config</module>
+        <module>minsx-authorization-plugin</module>
+        <module>minsx-authorization-common</module>
     </modules>
 </project>

@@ -19,21 +19,6 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.minsx</groupId>
-			<artifactId>minsx-authorization-entity</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.minsx</groupId>
-			<artifactId>minsx-authorization-repository</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.minsx</groupId>
-			<artifactId>minsx-authorization-service-api</artifactId>
-			<version>1.0.0</version>
-		</dependency>
 	</dependencies>
 
 </project>

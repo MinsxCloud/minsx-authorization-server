@@ -1,4 +1,4 @@
-package com.minsx.authorization.entity.base.auth;
+package com.minsx.authorization.entity.auth;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonIgnore;

@@ -1,5 +1,7 @@
 package com.minsx.authorization.config;
 
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -14,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * CrossFilter
  * Created by Joker on 2017/8/29.
  */
-//@Component
+@Component
 public class CrossFilter implements Filter {
 	
 	

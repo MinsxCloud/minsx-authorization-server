@@ -1,31 +1,16 @@
-package com.minsx.authorization.verification;
-
-import java.awt.print.Printable;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.lang.reflect.GenericArrayType;
-import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.logging.Logger;
-
-import javax.print.DocFlavor.STRING;
-import javax.servlet.descriptor.JspConfigDescriptor;
-import javax.servlet.http.HttpServletRequest;
-import javax.xml.crypto.Data;
+package com.minsx.authorization.plugin.geetest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 
 /**
  * Java SDK
@@ -61,12 +46,12 @@ public class GeetestLib {
 	/**
 	 * 公钥
 	 */
-	private String captchaId = "c764901e60ee732181a48898dff756f0";
+	private String captchaId = "";
 
 	/**
 	 * 私钥
 	 */
-	private String privateKey = "8ea0a1d6d2a996d27104bcfd15a6db02\n";
+	private String privateKey = "";
 	
 	/**
 	 * 是否开启新的failback
@@ -81,7 +66,7 @@ public class GeetestLib {
 	/**
 	 * 调试开关，是否输出调试日志
 	 */
-	public boolean debugCode = true;
+	public boolean debugCode = false;
 	
 	/**
 	 * 极验验证API服务状态Session Key

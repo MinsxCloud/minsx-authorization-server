@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.minsx.authorization.common.util.RequestUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.authentication.LockedException;
@@ -37,7 +38,7 @@ public class LoginFailHandler extends SimpleUrlAuthenticationFailureHandler {
             logger.info("LoginFailHandler login fail!");
             result.put("msg", "用户名或密码不正确！");
         }
-        HttpServletRequestUtil.responseJson(response, result);
+        RequestUtil.responseJson(response, result);
     }
 
 

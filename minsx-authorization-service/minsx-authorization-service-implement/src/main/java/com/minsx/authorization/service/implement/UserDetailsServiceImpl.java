@@ -1,13 +1,11 @@
 package com.minsx.authorization.service.implement;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import com.minsx.authorization.entity.base.auth.Auth;
-import com.minsx.authorization.entity.base.auth.Group;
-import com.minsx.authorization.entity.base.auth.Role;
-import com.minsx.authorization.entity.developer.DevUser;
+import com.minsx.authorization.api.UserService;
+import com.minsx.authorization.entity.auth.Auth;
+import com.minsx.authorization.entity.auth.Group;
+import com.minsx.authorization.entity.auth.Role;
+import com.minsx.authorization.entity.system.DevUser;
+import com.minsx.authorization.entity.system.User;
 import com.minsx.authorization.repository.developer.DevUserRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -19,8 +17,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.minsx.authorization.entity.system.User;
-import com.minsx.authorization.repository.user.UserRepository;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * UserDetailsServiceImpl
@@ -30,7 +29,7 @@ import com.minsx.authorization.repository.user.UserRepository;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
     @Autowired
     DevUserRepository devUserRepository;
@@ -40,7 +39,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserDetails userDetails;
-        User user = userRepository.findByUserName(username);
+        User user = userService.getUserByUsernameOrEmailOrPhone(username);
         if (user == null) {
             DevUser devUser = devUserRepository.findByAccessKey(username);
             if (devUser == null) {

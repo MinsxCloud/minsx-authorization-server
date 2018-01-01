@@ -1,11 +1,10 @@
-package com.minsx.authorization.entity.developer;
+package com.minsx.authorization.entity.system;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.minsx.authorization.entity.base.auth.Group;
+import com.minsx.authorization.entity.auth.Group;
 import com.minsx.authorization.entity.base.simple.SimpleMinsxEntity;
 import com.minsx.authorization.entity.base.type.DevUserState;
-import com.minsx.authorization.entity.system.User;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;

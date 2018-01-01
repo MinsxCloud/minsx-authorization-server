@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.minsx.authorization.common.util.RequestUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
@@ -25,7 +26,7 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 		logger.info("login success");
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("isSuccess", true);
-		HttpServletRequestUtil.responseJson(response, result);
+		RequestUtil.responseJson(response, result);
 	}
 
 }
