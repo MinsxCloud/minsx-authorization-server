@@ -29,8 +29,8 @@ public class SystemController {
     }
 
 	@GetMapping(value = "/getEmailCode")
-	public ResponseEntity<?> getEmailCode(@RequestParam String username) {
-		return userService.getEmailCode(username);
+	public ResponseEntity<?> getEmailCode(HttpServletRequest request,@RequestParam String username) {
+		return userService.getEmailCode(request.getSession(),username);
 	}
 
 

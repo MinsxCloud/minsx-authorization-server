@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Random;
@@ -103,7 +104,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<?> getEmailCode(String username) {
+    public ResponseEntity<?> getEmailCode(HttpSession session, String username) {
         User user = userRepository.findByUserName(username);
         if (user == null) {
             return new ResponseEntity<>("账号不存在", HttpStatus.BAD_REQUEST);
@@ -113,6 +114,8 @@ public class UserServiceImpl implements UserService {
         }
 
         String code = String.valueOf(new Random().nextInt(999999));
+        session.setAttribute("EmailCode", code);
+
         boolean isSuccess = false;
         if (isSuccess) {
             return new ResponseEntity<>("邮件发送成功", HttpStatus.OK);

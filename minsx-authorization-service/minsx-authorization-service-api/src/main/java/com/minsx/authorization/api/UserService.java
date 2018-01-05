@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public interface UserService {
@@ -19,7 +20,7 @@ public interface UserService {
 
     ResponseEntity<?> register(HttpServletRequest request, String username, String password);
 
-    ResponseEntity<?> getEmailCode(String username);
+    ResponseEntity<?> getEmailCode(HttpSession session, String username);
 
     User getUserByUsernameOrEmailOrPhone(String username);
 
