@@ -9,6 +9,7 @@
     <script src="js/axios.js"></script>
     <script src="js/minsx.js"></script>
     <script src="js/gt.js"></script>
+    <script src="js/js.cookie.js"></script>
     <script src="frame/layui/layui.js"></script>
 
 </head>
@@ -256,7 +257,7 @@
         Minsx.Http.postWithOption("/oauth/token", null, option).then(function (response) {
             if (response.status === 200) {
                 const redir = Minsx.Util.getUrlParam("redir");
-                Minsx.Cookie.set("access_token", response.data.access_token, "/");
+                Cookies.set('access_token', response.data.access_token, { domain: 'localhost' });
                 if (redir === null || redir === '') {
                     window.location.href = 'https://www.minsx.com';
                 } else {
