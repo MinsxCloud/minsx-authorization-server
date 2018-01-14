@@ -19,6 +19,6 @@ Minsx-authorization-server是Minsx-Framework家庭成员的一部分，主要负
 + 配合Minsx-Framework使用 [点此查看](https://github.com/MinsxCloud/minsx-framework)
 
 ### 项目截图 (V2.0.0版本)
-![登录](https://raw.githubusercontent.com/MinsxCloud/minsx-authorization-server/master/doc/login.png "登录")
+![登录](https://raw.githubusercontent.com/MinsxCloud/minsx-authorization-server/master/doc/image/login.png "登录")
 
 
