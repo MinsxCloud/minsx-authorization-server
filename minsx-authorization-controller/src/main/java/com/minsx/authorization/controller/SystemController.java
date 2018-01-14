@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
+@RequestMapping(value = "/system")
 public class SystemController {
 
 	private final UserService userService;
@@ -18,21 +19,20 @@ public class SystemController {
 		this.userService = userService;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-		return "login";
-	}
-
 	@PostMapping(value = "/register")
-    public ResponseEntity<?> register(HttpServletRequest request,@RequestParam String username, @RequestParam String password) {
-        return userService.register(request,username,password);
+    public ResponseEntity<?> register(HttpServletRequest request,@RequestParam String username,@RequestParam String email, @RequestParam String password) {
+        return userService.register(request,username,email,password);
     }
 
 	@GetMapping(value = "/getEmailCode")
 	public ResponseEntity<?> getEmailCode(HttpServletRequest request,@RequestParam String username) {
-		return userService.getEmailCode(request.getSession(),username);
+		return userService.getEmailCode(request,username);
 	}
 
+	@PutMapping(value = "/changePass")
+	public ResponseEntity<?> changePass(HttpServletRequest request, @RequestParam String username,@RequestParam String password,String emailCode) {
+		return userService.changePass(request,username,password,emailCode);
+	}
 
 	
 }

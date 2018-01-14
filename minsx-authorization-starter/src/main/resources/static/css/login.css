@@ -143,8 +143,8 @@ body,html {
 
 
 
-/***getPass begin***/
-.main .content .getPass{
+/***changePass begin***/
+.main .content .changePass{
     background-color: white;
      filter:alpha(Opacity=60);-moz-opacity:0.6;opacity: 0.6;
     padding: 10px;
@@ -156,7 +156,7 @@ body,html {
     right: 200px;
 }
 
-.main .content .getPass .getPass-header{
+.main .content .changePass .changePass-header{
     background: url(../images/blackLogo.png) no-repeat left center;
     background-size:80%;
     background-position-x: 35px;
@@ -164,13 +164,13 @@ body,html {
     padding-bottom: 5px;
     height:120px;
 }
-.main .content .getPass .getPass-username{
+.main .content .changePass .changePass-username{
     padding-top: 5px;
     padding-bottom: 5px;
     height:60px;
 }
 
-.main .content .getPass .getPass-sendCode{
+.main .content .changePass .changePass-sendCode{
     margin-bottom: -15px;
     color: #009f95;
     font-size: 13px;
@@ -184,28 +184,28 @@ body,html {
     width: 70px;
 }
 
-.main .content .getPass .getPass-password{
+.main .content .changePass .changePass-password{
     padding-top: 5px;
     padding-bottom: 5px;
     height:60px;
 }
-.main .content .getPass .getPass-code{
+.main .content .changePass .changePass-code{
     padding-top: 5px;
     padding-bottom: 5px;
     height:60px;
 }
-.main .content .getPass .getPass-button{
+.main .content .changePass .changePass-button{
     padding-left: 25px;
     padding-top: 25px;
     padding-bottom: 5px;
     height:40px;
 }
-.main .content .getPass .getPass-footer{
+.main .content .changePass .changePass-footer{
     padding-top: 5px;
     padding-bottom: 5px;
     height:60px;
 }
-/***getPass end***/
+/***changePass end***/
 
 
 

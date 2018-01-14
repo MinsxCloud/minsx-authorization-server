@@ -14,14 +14,15 @@ import java.io.IOException;
 public interface UserService {
 
     /**
-     *该方法用于登录之前对验证码及用户类型做相关校验
+     * 该方法用于登录之前对验证码及用户类型做相关校验
      */
     void verifyAuthBeforeGetToken(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException;
 
-    ResponseEntity<?> register(HttpServletRequest request, String username, String password);
+    ResponseEntity<?> register(HttpServletRequest request, String username, String email, String password);
 
-    ResponseEntity<?> getEmailCode(HttpSession session, String username);
+    ResponseEntity<?> getEmailCode(HttpServletRequest request, String username);
 
     User getUserByUsernameOrEmailOrPhone(String username);
 
+    ResponseEntity<?> changePass(HttpServletRequest request, String username, String password, String emailCode);
 }

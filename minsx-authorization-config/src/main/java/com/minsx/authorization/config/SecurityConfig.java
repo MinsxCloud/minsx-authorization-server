@@ -45,10 +45,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
         .requestMatchers()
         	.antMatchers("/oauth/authorize", "/oauth/confirm_access")
-			.antMatchers("/login","/register","/getEmailCode","/verify/**")
+			.antMatchers("/login","/system/**","/verify/**")
 			.and()
         .authorizeRequests()
-			.antMatchers("/login","/register","/getEmailCode","/verify/**")
+			.antMatchers("/login","/system/**","/verify/**")
         	.permitAll()
         	.anyRequest().authenticated().and();
     }

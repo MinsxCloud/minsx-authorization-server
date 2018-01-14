@@ -79,29 +79,29 @@
             <div class="register-username">
                 <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe609;</i></div>
                 <div class="main-input-outside">
-                    <input type="text" name="title" id="register-username-input" placeholder="请输入用户名/邮箱/手机号码"
+                    <input type="text" name="title" id="register-username-input" placeholder="请输入用户名"
                            class="main-input-inner">
                 </div>
             </div>
             <div class="register-password">
                 <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62c;</i></div>
                 <div class="main-input-outside">
-                    <input type="password" name="title" id="register-password-input" placeholder="请输入密码"
+                    <input type="email" name="title" id="register-email-input" placeholder="请输入邮箱"
                            class="main-input-inner">
                 </div>
             </div>
             <div class="register-rePassword">
                 <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62c;</i></div>
                 <div class="main-input-outside">
-                    <input type="password" name="title" id="register-confirmPassword-input"
-                           placeholder="请再次输入密码" class="main-input-inner">
+                    <input type="password" name="title" id="register-password-input"
+                           placeholder="请输入密码" class="main-input-inner">
                 </div>
             </div>
             <div class="register-button">
                 <button class="layui-btn" id="registerButton" style="width: 300px">注册</button>
             </div>
             <div class="register-footer">
-                <a href="javascript:void(0);" onclick="showGetPass()">
+                <a href="javascript:void(0);" onclick="showChangePass()">
                     <div class="main-footer-left">忘记密码?</div>
                 </a>
                 <a href="javascript:void(0);" onclick="showLogin()">
@@ -111,36 +111,36 @@
         </div>
 
 
-        <!--getPass-->
-        <div class="getPass" id="getPassBox">
-            <div class="getPass-header">
+        <!--changePass-->
+        <div class="changePass" id="changePassBox">
+            <div class="changePass-header">
             </div>
-            <div class="getPass-username">
+            <div class="changePass-username">
                 <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe609;</i></div>
                 <div class="main-input-outside">
-                    <input type="text" id="getPass-username-input" placeholder="请输入用户名/邮箱/手机号码"
+                    <input type="text" id="changePass-username-input" placeholder="请输入用户名/邮箱/手机号"
                            class="main-input-inner">
-                    <a href="javascript:void(0);" onclick="sendCode()">
-                        <div class="getPass-sendCode">发送验证码</div>
+                    <a href="javascript:void(0);" id="changePassButton">
+                        <div class="changePass-sendCode">发送验证码</div>
                     </a>
                 </div>
             </div>
-            <div class="getPass-password">
+            <div class="changePass-password">
                 <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe62c;</i></div>
                 <div class="main-input-outside">
-                    <input type="password" id="getPass-password-input" placeholder="请输入新密码" class="main-input-inner">
+                    <input type="password" id="changePass-password-input" placeholder="请输入新密码" class="main-input-inner">
                 </div>
             </div>
-            <div class="getPass-code">
+            <div class="changePass-code">
                 <div class="input-ico"><i class="layui-icon" style="font-size: 30px;">&#xe63a;</i></div>
                 <div class="main-input-outside">
-                    <input type="text" id="getPass-code-input" placeholder="请输入验证码" class="main-input-inner">
+                    <input type="text" id="changePass-code-input" placeholder="请输入验证码" class="main-input-inner">
                 </div>
             </div>
-            <div class="getPass-button">
-                <button class="layui-btn" style="width: 300px" onclick="getPass()">找回密码</button>
+            <div class="changePass-button">
+                <button class="layui-btn" style="width: 300px" onclick="changePass()" >修改密码</button>
             </div>
-            <div class="getPass-footer">
+            <div class="changePass-footer">
                 <a href="javascript:void(0);" onclick="showLogin()">
                     <div class="main-footer-left">立即登录</div>
                 </a>
@@ -179,7 +179,7 @@
                 <button class="layui-btn" id="loginButton" style="width: 300px">登录</button>
             </div>
             <div class="login-footer">
-                <a href="javascript:void(0);" onclick="showGetPass()">
+                <a href="javascript:void(0);" onclick="showChangePass()">
                     <div class="main-footer-left">忘记密码?</div>
                 </a>
                 <a href="javascript:void(0);" onclick="showRegister()">
@@ -257,7 +257,7 @@
         Minsx.Http.postWithOption("/oauth/token", null, option).then(function (response) {
             if (response.status === 200) {
                 const redir = Minsx.Util.getUrlParam("redir");
-                Cookies.set('access_token', response.data.access_token, { domain: 'localhost' });
+                Cookies.set('access_token', response.data.access_token, {domain: 'localhost'});
                 if (redir === null || redir === '') {
                     window.location.href = 'https://www.minsx.com';
                 } else {
@@ -303,18 +303,17 @@
         $('#registerButton').click(function () {
             let data = {
                 username: $('#register-username-input').val(),
-                password: $('#register-password-input').val(),
-                confirmPassword: $('#register-confirmPassword-input').val()
+                email: $('#register-email-input').val(),
+                password: $('#register-password-input').val()
             };
             if (data.username === '') {
                 layer.msg('用户名不能为空！');
                 return;
-            } else if (data.password === '' || data.confirmPassword === '') {
-                layer.msg('密码不能为空！');
+            } else if (data.email === '' ) {
+                layer.msg('邮箱不能为空！');
                 return;
-            }
-            if (data.password !== data.confirmPassword) {
-                layer.msg('两次密码不一致');
+            }else if (data.password === '') {
+                layer.msg('密码不能为空！');
                 return;
             }
             captchaObj.verify();
@@ -324,13 +323,13 @@
     function register(result) {
         let data = {
             username: $('#register-username-input').val(),
+            email: $('#register-email-input').val(),
             password: $('#register-password-input').val(),
-            confirmPassword: $('#register-confirmPassword-input').val(),
             geetest_challenge: result.geetest_challenge,
             geetest_validate: result.geetest_validate,
             geetest_seccode: result.geetest_seccode
         };
-        Minsx.Http.post("/register", null, data).then(function (response) {
+        Minsx.Http.post("/system/register", null, data).then(function (response) {
             if (response.status === 200) {
                 layer.msg('注册成功！');
                 $('#login-username-input').val(data.username);
@@ -342,12 +341,12 @@
         });
     }
 
-    //--------------------找回密码---------------------------
-    function getPass() {
+    //--------------------修改密码---------------------------
+    function changePass() {
         let data = {
-            username: $('#getPass-username-input').val(),
-            password: $('#getPass-password-input').val(),
-            code: $('#getPass-code-input').val(),
+            username: $('#changePass-username-input').val(),
+            password: $('#changePass-password-input').val(),
+            emailCode: $('#changePass-code-input').val()
         };
         if (data.username === null || data.username === '') {
             layer.msg('用户名不能为空');
@@ -357,13 +356,13 @@
             layer.msg('密码不能为空');
             return;
         }
-        if (data.code === null || data.code === '') {
+        if (data.emailCode === null || data.emailCode === '') {
             layer.msg('验证码不能为空');
             return;
         }
-        Minsx.Http.post("/getPass", null, data).then(function (response) {
+        Minsx.Http.put("/system/changePass", null, data).then(function (response) {
             if (response.status === 200) {
-                layer.msg('重置密码成功！');
+                layer.msg('修改密码成功！');
                 $('#login-username-input').val(data.username);
                 $('#login-password-input').val(data.password);
                 showLogin();
@@ -373,17 +372,51 @@
         });
     }
 
-    function sendCode() {
-        let data = {
-            username: $('#getPass-username-input').val(),
-        };
-        if (data.username === null || data.username === '') {
-            layer.msg('用户名不能为空');
-            return;
+    $.ajax({
+        url: "/verify/initial?t=" + (new Date()).getTime(),
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+            initGeetest({
+                gt: data.gt,
+                challenge: data.challenge,
+                offline: !data.success,
+                new_captcha: data.new_captcha,
+                product: "bind",
+                width: "300px"
+            }, handlerSendCode);
         }
-        Minsx.Http.get("/getEmailCode", data).then(function (response) {
+    });
+
+    var handlerSendCode = function (captchaObj) {
+        captchaObj.onReady(function () {
+        }).onSuccess(function () {
+            var result = captchaObj.getValidate();
+            if (!result) {
+                return layer.msg('请完成验证!');
+            }
+            sendCode(result);
+        });
+        $('#changePassButton').click(function () {
+            var username = $('#changePass-username-input').val();
+            if (username === null || username === '') {
+                layer.msg('用户名不能为空');
+                return;
+            }
+            captchaObj.verify();
+        });
+    };
+
+    function sendCode(result) {
+        let data = {
+            username: $('#changePass-username-input').val(),
+            geetest_challenge: result.geetest_challenge,
+            geetest_validate: result.geetest_validate,
+            geetest_seccode: result.geetest_seccode
+        };
+        Minsx.Http.get("/system/getEmailCode", data).then(function (response) {
             if (response.status === 200) {
-                layer.tips('验证码已发送到您的邮箱', '#getPass-code-input');
+                layer.tips('验证码已发送到您的邮箱', '#changePass-code-input');
             }
         }).catch(function (error) {
             layer.msg(error.response.data);
@@ -391,24 +424,24 @@
     }
 
     $("#registerBox").hide();
-    $("#getPassBox").hide();
+    $("#changePassBox").hide();
 
     function showRegister() {
         $("#loginBox").hide();
-        $("#getPassBox").hide();
+        $("#changePassBox").hide();
         $("#registerBox").show();
     }
 
     function showLogin() {
         $("#registerBox").hide();
-        $("#getPassBox").hide();
+        $("#changePassBox").hide();
         $("#loginBox").show();
     }
 
-    function showGetPass() {
+    function showChangePass() {
         $("#registerBox").hide();
         $("#loginBox").hide();
-        $("#getPassBox").show();
+        $("#changePassBox").show();
     }
 </script>
 </body>
