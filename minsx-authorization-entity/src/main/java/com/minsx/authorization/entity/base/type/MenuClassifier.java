@@ -1,15 +1,16 @@
 package com.minsx.authorization.entity.base.type;
 
 /**
- * 分组类型
+ * 菜单分类
+ * Created by Joker on 2017/8/31.
  */
-public enum GroupType {
+public enum MenuClassifier {
 
-    SYSTEM("SYSTEM"), DEVELOPER("DEVELOPER"),UNKNOWN("UNKNOWN");
+    TOP("TOP"), LEFT("LEFT"), UNKNOWN("UNKNOWN");
 
     String value;
 
-    GroupType(String value) {
+    MenuClassifier(String value) {
         this.value = value;
     }
 
@@ -21,7 +22,7 @@ public enum GroupType {
         this.value = value;
     }
 
-    public static GroupType getGroupType(String value) {
+    public static MenuClassifier getMenuClassifier(String value) {
         try {
             return valueOf(value);
         } catch (Exception e) {

@@ -1,4 +1,4 @@
-package com.minsx.authorization.entity.system;
+package com.minsx.authorization.entity.ordinary;
 
 import com.minsx.authorization.entity.base.simple.SimpleMinsxEntity;
 

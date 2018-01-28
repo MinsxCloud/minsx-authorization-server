@@ -1,6 +1,6 @@
 package com.minsx.authorization.api;
 
-import com.minsx.authorization.entity.system.User;
+import com.minsx.authorization.entity.ordinary.User;
 import org.springframework.http.ResponseEntity;
 
 import javax.servlet.FilterChain;
@@ -8,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public interface UserService {

@@ -1,10 +1,9 @@
-package com.minsx.authorization.entity.auth;
+package com.minsx.authorization.entity.ordinary;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minsx.authorization.entity.base.simple.SimpleMinsxEntity;
 import com.minsx.authorization.entity.base.type.RoleState;
-import com.minsx.authorization.entity.system.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -45,10 +44,8 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
     private String description;
 
     //创建者ID
-	@JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User createUser;
+	@Column(name = "create_user_id")
+    private Integer createUserId;
 
     @Override
     public String toString() {
@@ -108,21 +105,17 @@ public class Role  extends SimpleMinsxEntity implements Serializable {
 		this.state = roleState.getValue();
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
-	}
-
     public void removeAuth(Auth auth) {
         if (this.auths!=null&&this.auths.contains(auth)) {
             this.auths.remove(auth);
         }
     }
 
-    public User getCreateUser() {
-        return createUser;
+    public Integer getCreateUserId() {
+        return createUserId;
     }
 
-    public void setCreateUser(User createUser) {
-        this.createUser = createUser;
+    public void setCreateUserId(Integer createUserId) {
+        this.createUserId = createUserId;
     }
 }

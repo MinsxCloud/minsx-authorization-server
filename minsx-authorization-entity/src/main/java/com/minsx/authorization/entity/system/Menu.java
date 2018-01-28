@@ -1,11 +1,10 @@
-package com.minsx.authorization.entity.auth;
+package com.minsx.authorization.entity.system;
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minsx.authorization.entity.base.simple.SimpleMinsxEntity;
+import com.minsx.authorization.entity.base.type.MenuClassifier;
 import com.minsx.authorization.entity.base.type.MenuState;
 import com.minsx.authorization.entity.base.type.MenuType;
-import com.minsx.authorization.entity.system.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -48,15 +47,16 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
 
     @Column(nullable = false, name = "type")
     private String type;
-    
+
+    @Column(nullable = false, name = "classifier")
+    private String classifier;
+
     @Column(name = "description")
     private String description;
 
     //创建者ID
-	@JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User createUser;
+	@Column(name = "create_user_id")
+    private Integer createUserId;
 
     @Override
     public String toString() {
@@ -119,10 +119,6 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
 		this.state = menuState.getValue();
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
-	}
-
     public Integer getSort() {
         return sort;
     }
@@ -151,11 +147,23 @@ public class Menu extends SimpleMinsxEntity implements Serializable{
         this.type = type;
     }
 
-    public User getCreateUser() {
-        return createUser;
+    public String getClassifier() {
+        return classifier;
     }
 
-    public void setCreateUser(User createUser) {
-        this.createUser = createUser;
+    public void setClassifier(String classifier) {
+        this.classifier = classifier;
+    }
+
+    public void setClassifier(MenuClassifier menuClassifier) {
+        this.classifier = menuClassifier.getValue();
+    }
+
+    public Integer getCreateUserId() {
+        return createUserId;
+    }
+
+    public void setCreateUserId(Integer createUserId) {
+        this.createUserId = createUserId;
     }
 }

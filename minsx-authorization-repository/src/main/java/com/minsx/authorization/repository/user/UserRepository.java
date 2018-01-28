@@ -1,6 +1,6 @@
 package com.minsx.authorization.repository.user;
 
-import com.minsx.authorization.entity.system.User;
+import com.minsx.authorization.entity.ordinary.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,11 +1,11 @@
 package com.minsx.authorization.service.implement;
 
 import com.minsx.authorization.api.UserService;
-import com.minsx.authorization.entity.auth.Auth;
-import com.minsx.authorization.entity.auth.Group;
-import com.minsx.authorization.entity.auth.Role;
-import com.minsx.authorization.entity.system.DevUser;
-import com.minsx.authorization.entity.system.User;
+import com.minsx.authorization.entity.developer.DevUser;
+import com.minsx.authorization.entity.ordinary.Auth;
+import com.minsx.authorization.entity.ordinary.Group;
+import com.minsx.authorization.entity.ordinary.Role;
+import com.minsx.authorization.entity.ordinary.User;
 import com.minsx.authorization.repository.developer.DevUserRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -34,6 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     DevUserRepository devUserRepository;
 
+
     private final Log logger = LogFactory.getLog(this.getClass());
 
     @Override
@@ -47,16 +48,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 throw new UsernameNotFoundException("the user does not exist");
             } else {
                 Set<GrantedAuthority> authorities = new HashSet<>();
-                List<Group> userGroups = devUser.getGroups();
-                userGroups.forEach(userGroup -> {
-                    List<Role> roles = userGroup.getRoles();
-                    roles.forEach(role -> {
-                        List<Auth> auths = role.getAuths();
-                        auths.forEach(auth -> {
-                            authorities.add(new SimpleGrantedAuthority(auth.getType() + ":" + auth.getValue()));
-                        });
-                    });
-                });
                 devUser.setAuthorities(authorities);
                 userDetails = devUser;
             }

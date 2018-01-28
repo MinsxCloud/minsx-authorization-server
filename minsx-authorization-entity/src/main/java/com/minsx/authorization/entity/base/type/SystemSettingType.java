@@ -1,15 +1,16 @@
 package com.minsx.authorization.entity.base.type;
 
 /**
- * 分组类型
+ * 系统设置类型
+ * Created by Joker on 2017/8/31.
  */
-public enum GroupType {
+public enum SystemSettingType {
 
-    SYSTEM("SYSTEM"), DEVELOPER("DEVELOPER"),UNKNOWN("UNKNOWN");
+    SITE_INFO("SITE_INFO"),REGISTER("REGISTER"),BASIC("BASIC"), UNKNOWN("UNKNOWN");
 
     String value;
 
-    GroupType(String value) {
+    SystemSettingType(String value) {
         this.value = value;
     }
 
@@ -21,7 +22,7 @@ public enum GroupType {
         this.value = value;
     }
 
-    public static GroupType getGroupType(String value) {
+    public static SystemSettingType getSystemSettingType(String value) {
         try {
             return valueOf(value);
         } catch (Exception e) {

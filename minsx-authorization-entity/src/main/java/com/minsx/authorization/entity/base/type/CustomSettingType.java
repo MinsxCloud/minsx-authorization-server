@@ -1,15 +1,16 @@
 package com.minsx.authorization.entity.base.type;
 
 /**
- * 分组类型
+ * 用户自定义设置类型
+ * Created by Joker on 2017/8/31.
  */
-public enum GroupType {
+public enum CustomSettingType {
 
-    SYSTEM("SYSTEM"), DEVELOPER("DEVELOPER"),UNKNOWN("UNKNOWN");
+    BASIC("BASIC"), UNKNOWN("UNKNOWN");
 
     String value;
 
-    GroupType(String value) {
+    CustomSettingType(String value) {
         this.value = value;
     }
 
@@ -21,7 +22,7 @@ public enum GroupType {
         this.value = value;
     }
 
-    public static GroupType getGroupType(String value) {
+    public static CustomSettingType getCustomSettingType(String value) {
         try {
             return valueOf(value);
         } catch (Exception e) {

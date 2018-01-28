@@ -1,10 +1,9 @@
-package com.minsx.authorization.entity.system;
+package com.minsx.authorization.entity.ordinary;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.minsx.authorization.entity.auth.Group;
 import com.minsx.authorization.entity.base.simple.SimpleMinsxEntity;
 import com.minsx.authorization.entity.base.type.UserState;
 import org.hibernate.validator.constraints.Length;
@@ -55,10 +54,10 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
             inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "group_id"))
     private List<Group> groups;
 
-    @Column(nullable = false, name = "email", unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
-    @Column(nullable = false, name = "phone", unique = true)
+    @Column(name = "phone", unique = true)
     private String phone;
 
     @Column(name = "face")
@@ -72,13 +71,13 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
     private LocalDateTime registerTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Column(nullable = false, name = "last_login_time")
+    @Column(name = "last_login_time")
     private LocalDateTime lastLoginTime;
 
     @Column(nullable = false, name = "register_ip")
     private String registerIp;
 
-    @Column(nullable = false, name = "last_login_ip")
+    @Column(name = "last_login_ip")
     private String lastLoginIp;
 
     @Override
@@ -164,10 +163,6 @@ public class User extends SimpleMinsxEntity implements Serializable, UserDetails
 
     public void setState(UserState userState) {
         this.state = userState.getValue();
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
     }
 
     public List<Group> getGroups() {
