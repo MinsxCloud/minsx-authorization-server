@@ -14,7 +14,7 @@
 ### 技术选型
 + Spring Boot 基础后端框架
 + Spring Security 安全框架
-+ spring Data JPA 
++ spring Data JPA ORM框架
 + spring Security Oauth2.0 应用授权框架
 + spring Thymeleaf 模板引擎
 + spring Aop 切面模块
@@ -23,6 +23,9 @@
 + 适用于单点登录系统
 + 需要分离用户系统的架构
 + 配合Minsx-Framework使用 [点此查看](https://github.com/MinsxCloud/minsx-framework)
+
+### 项目演示
++ [点此查看项目演示](https://account.minsx.com/login?redir=https%3A%2F%2Fadmin.minsx.com)
 
 ### 项目截图 (V2.0.0版本)
 ![登录](https://raw.githubusercontent.com/MinsxCloud/minsx-authorization-server/master/doc/image/login.png "登录")
