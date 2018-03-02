@@ -40,3 +40,5 @@ minsx-authorization-starter/.settings/org.eclipse.wst.common.project.facet.core.
 .idea/
 minsx-authorization-starter/.springBeans
 minsx-authorization-plugin/target/
+minsx-authorization-common/target/
+logs/

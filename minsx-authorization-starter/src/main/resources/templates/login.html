@@ -257,7 +257,7 @@
         Minsx.Http.postWithOption("/oauth/token", null, option).then(function (response) {
             if (response.status === 200) {
                 const redir = Minsx.Util.getUrlParam("redir");
-                Cookies.set('access_token', response.data.access_token, {domain: 'localhost'});
+                Cookies.set('access_token', response.data.access_token, {domain: 'minsx.com'});
                 if (redir === null || redir === '') {
                     window.location.href = 'https://www.minsx.com';
                 } else {

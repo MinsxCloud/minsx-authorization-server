@@ -12,6 +12,7 @@ import com.minsx.authorization.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -50,26 +51,27 @@ public class UserServiceImpl implements UserService {
     public void verifyAuthBeforeGetToken(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String[] userNames = request.getParameterMap().get("username");
         String username = userNames == null ? null : userNames[0];
-        String[] resources = request.getParameterMap().get("resource");
-        String resource = resources == null ? null : resources[0];
-        if ("web".equals(resource)) {
-            int result = GeeTestUtil.verify(request);
-            if (result == 1) {
-                User user = getUserByUsernameOrEmailOrPhone(username);
-                if (user == null) {
-                    RequestUtil.responseJson(HttpStatus.NOT_FOUND, "用户不存在");
-                    return;
-                }
+        String[] grant_types = request.getParameterMap().get("grant_type");
+        String grant_type = grant_types == null ? null : grant_types[0];
+        if ("password".equalsIgnoreCase(grant_type)) {
+            UserDetails userDetails = null;
+            userDetails = devUserRepository.findByAccessKey(username);
+            if (userDetails != null) {
                 chain.doFilter(request, response);
             } else {
-                RequestUtil.responseJson(HttpStatus.BAD_REQUEST, "无效验证");
+                int result = GeeTestUtil.verify(request);
+                if (result == 1) {
+                    userDetails = getUserByUsernameOrEmailOrPhone(username);
+                    if (userDetails != null) {
+                        chain.doFilter(request, response);
+                    } else {
+                        RequestUtil.responseJson(HttpStatus.NOT_FOUND, "用户不存在");
+                    }
+                } else {
+                    RequestUtil.responseJson(HttpStatus.BAD_REQUEST, "无效验证");
+                }
             }
         } else {
-            DevUser devUser = devUserRepository.findByAccessKey(username);
-            if (devUser == null) {
-                RequestUtil.responseJson(HttpStatus.NOT_FOUND, "用户不存在");
-                return;
-            }
             chain.doFilter(request, response);
         }
     }
@@ -109,7 +111,7 @@ public class UserServiceImpl implements UserService {
             user.setRegisterTime(LocalDateTime.now());
             userRepository.save(user);
 
-            return new ResponseEntity<>("激活链接已发送到您的邮箱,请注意查收",HttpStatus.OK);
+            return new ResponseEntity<>("激活链接已发送到您的邮箱,请注意查收", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("无效验证", HttpStatus.BAD_REQUEST);
         }

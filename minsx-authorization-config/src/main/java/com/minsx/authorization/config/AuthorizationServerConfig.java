@@ -1,3 +1,4 @@
+/*
 package com.minsx.authorization.config;
 
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -6,9 +7,11 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 
 import java.util.concurrent.TimeUnit;
 
+*/
 /**
  * 主要用于Authorization Server 的全局配置(暂时未使用)
- */
+ *//*
+
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
@@ -23,3 +26,4 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
 
 }
+*/
