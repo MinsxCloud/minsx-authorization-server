@@ -73,12 +73,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.minsx</groupId>
             <artifactId>minsx-util-mail</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.minsx</groupId>
+            <artifactId>minsx-util-excel</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -86,7 +88,12 @@
             <dependency>
                 <groupId>com.minsx</groupId>
                 <artifactId>minsx-util-mail</artifactId>
-                <version>1.0.3</version>
+                <version>1.0.5</version>
+            </dependency>
+            <dependency>
+                <groupId>com.minsx</groupId>
+                <artifactId>minsx-util-excel</artifactId>
+                <version>1.0.5</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>

@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .logoutSuccessUrl("/login")
             .and()
         .requestMatchers()
-        	.antMatchers("/oauth/authorize", "/oauth/confirm_access")
+        	.antMatchers("/oauth/authorize", "/oauth/confirm_access").antMatchers()
 			.antMatchers("/login","/system/**","/verify/**")
 			.and()
         .authorizeRequests()
