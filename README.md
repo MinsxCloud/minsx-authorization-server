@@ -22,7 +22,7 @@
 ### 适用场景
 + 适用于单点登录系统
 + 需要分离用户系统的架构
-+ 配合Minsx-Framework使用 [点此查看](https://github.com/MinsxCloud/minsx-framework)
++ 配合Minsx-Framework使用 [点此查看](https://github.com/MinsxCloud/minsx-center-server)
 
 ### 项目演示
 + [点此查看项目演示](https://account.minsx.com/login?redir=https%3A%2F%2Fadmin.minsx.com)
